@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="VENDOR ADD"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        ></TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:textStyle="bold"
+                android:text="VENDOR Name:" />
+
+            <EditText
+                android:id="@+id/et_itemname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".7"
+                android:imeOptions="actionDone"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:textStyle="bold"
+                android:text="Phone no:" />
+
+            <EditText
+                android:id="@+id/et_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".7"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:textStyle="bold"
+                android:text="Email id:" />
+
+            <EditText
+                android:id="@+id/minreq"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".7"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:textStyle="bold"
+                android:text="Address:" />
+
+            <EditText
+                android:id="@+id/maxreq"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".7"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:textStyle="bold"
+                android:text="GST IN/Reg no:" />
+
+            <EditText
+                android:id="@+id/urstak"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".7"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true" />
+        </LinearLayout>
+
+
+        <!-- <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center_vertical"
+             android:layout_marginTop="20dp"
+             android:orientation="vertical">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textStyle="bold"
+                 android:text="TYPE:" />
+
+
+             <RadioGroup
+                 android:id="@+id/radioSex"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:weightSum="2"
+                 android:layout_marginTop="20dp"
+                 android:orientation="horizontal">
+
+                 <RadioButton
+                     android:id="@+id/radioMale"
+                     android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:gravity="center"
+                     android:text="Globaltax"
+                     android:checked="true" />
+
+                 <RadioButton
+                     android:id="@+id/radioFemale"
+                     android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:gravity="center"
+                     android:text="Itemtax" />
+
+             </RadioGroup>
+
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="30dp"
+                 android:padding="10dp"
+                 android:background="@drawable/edit_bg"
+                 android:orientation="vertical">
+                 <CheckBox
+                     android:id="@+id/chkIos"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Dine-in"
+                     android:checked="true"/>
+
+                 <CheckBox
+                     android:id="@+id/chkAndroid"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Takeaway"
+                     android:checked="true" />
+
+                 <CheckBox
+                     android:id="@+id/chkWindows"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Home delivery"
+                     android:checked="true"/>
+
+
+             </LinearLayout>
+
+         </LinearLayout>
+ -->
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:padding="5dp">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3.6"
+
+        android:layout_gravity="center_horizontal"
+
+        >
+        <TextView
+            android:id="@+id/rank"
+            android:text="Title"
+            android:textStyle="bold"
+            android:textSize="14dp"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1.3"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/quantity"
+                android:textSize="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/editicon"
+            android:layout_width="@dimen/margin20"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight=".15"
+            android:layout_marginRight="7dp"
+            android:paddingLeft="8dp"
+            android:src="@drawable/ic_mode_edit" />
+        <ImageView
+            android:id="@+id/delicon"
+            android:layout_width="@dimen/margin20"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight=".15"
+            android:layout_marginRight="7dp"
+            android:paddingLeft="8dp"
+            android:src="@drawable/ic_delete" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:id="@+id/idview"
+            android:visibility="gone"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/drawerlayout"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Admin">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="2">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight=".5"
+    android:orientation="vertical">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/margin100"
+        android:layout_height="@dimen/margin100"
+        android:src="@drawable/admin_icon"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/madmincircle"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/md_black_1000">
+    </de.hdodenhof.circleimageview.CircleImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/md_pink_500"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:text="MASTER ADMIN"></TextView>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight=".7"
+        android:orientation="vertical">
+<de.hdodenhof.circleimageview.CircleImageView
+    android:layout_width="@dimen/margin100"
+    android:layout_height="@dimen/margin100"
+    app:civ_border_width="2dp"
+    android:id="@+id/ladmincircle"
+    android:layout_gravity="center_horizontal"
+    app:civ_border_color="@color/md_black_1000"
+    android:src="@drawable/c_users">
+
+</de.hdodenhof.circleimageview.CircleImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_pink_500"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:text="LOCAL ADMIN"></TextView>
+
+    </LinearLayout>
+    </LinearLayout>
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:itemIconTint="@color/colorPrimary"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
+</androidx.drawerlayout.widget.DrawerLayout>

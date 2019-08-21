@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.Tax">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+<!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:weightSum="2"
+            android:padding="10dp"
+            android:background="@color/md_white_1000"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+
+                    android:text="Select category"
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14dp"
+                    android:padding="5dip" />
+
+                <TextView
+
+                    android:layout_height="35dp"
+                    android:layout_width="match_parent"
+                    android:text="- None Selected -"
+                    android:id="@+id/select_colours"
+                    android:background="@drawable/spinner_bg"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    android:padding="5dip" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                >
+
+                <TextView
+                    android:text="Search Item"
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14dp"
+                    android:padding="5dip" />
+
+                <EditText
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/search_bg"
+                    android:hint="   Search......"
+                    >
+                    <requestFocus />
+
+                </EditText>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin45"
+            android:orientation="horizontal"
+            android:weightSum="3.6"
+            android:background="@color/md_white_1000"
+            android:layout_gravity="center"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/rank"
+                android:text="TAX NAME"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/country"
+                android:text="TAX VALUE"
+                android:textSize="12dp"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/quantity"
+                android:text="STATUS"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/id"
+                android:text="TYPE"
+                android:textSize="0dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/image"
+                android:text="TYPE"
+                android:textSize="0dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_width="0dp"
+                android:layout_weight=".1"
+                android:layout_height="wrap_content" />
+
+
+
+
+
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/search" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+/>
+
+
+</FrameLayout>

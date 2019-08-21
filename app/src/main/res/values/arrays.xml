@@ -1,0 +1,52 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="billing_mode_entries">
+        <item>Fine dine</item>
+        <item>Fine dine</item>
+    </string-array>
+
+    <string-array name="billing_mode_value">
+        <item>Fine dine</item>
+        <item>Fine dine</item>
+    </string-array>
+
+    <string-array name="Billing_type">
+        <item>Dine-in</item>
+        <item>Take Away</item>
+        <item>Home Delivery</item>
+
+    </string-array>
+
+    <string-array name="Billing_values">
+        <item>Dine-in</item>
+        <item>Take Away</item>
+        <item>Home Delivery</item>
+    </string-array>
+
+    <string-array name="Blue_tooth">
+        <item>ON</item>
+        <item>OFF</item>
+
+    </string-array>
+
+    <string-array name="Blue_tooth_value">
+        <item>ON</item>
+        <item>OFF</item>
+    </string-array>
+
+    <string-array name="Item_sorting">
+        <item>ON</item>
+        <item>OFF</item>
+
+    </string-array>
+
+    <string-array name="item_sorting_value">
+        <item>ON</item>
+        <item>OFF</item>
+    </string-array>
+
+
+
+
+
+</resources>

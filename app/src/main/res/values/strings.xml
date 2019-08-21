@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Restaurant</string>
+    <string name="admin">Admin</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="tab_format">Tab: %1$d</string>
+    <string name="rs">\u20B9</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Filter ListView Tutorial</string>
+    <string name="ranklabel">"Rank : "</string>
+    <string name="countrylabel">"Country : "</string>
+    <string name="populationlabel">"Population : "</string>
+    <string name="title_activity_masterview">Masterview</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+    <string name="title_home">ITEM</string>
+    <string name="title_dashboard">CATEGORY</string>
+    <string name="title_notifications">TAX</string>
+    <string name="title_profile">DISCOUNT</string>
+    <string name="username_already_exists">Username already exists</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string-array name="acc_type">
+        <item>Selected_one</item>
+        <item>Income</item>
+        <item>Expense</item>
+    </string-array>
+
+
+</resources>

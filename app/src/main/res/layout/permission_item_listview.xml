@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin20"
+    android:orientation="horizontal" >
+
+    <CheckBox
+        android:id="@+id/menu"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:layout_weight="0.15" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/gender"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="0.35"-->
+<!--        android:contentDescription="@string/action_settings" />-->
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:textColor="@color/colorAccent" />
+
+
+    <CheckBox
+        android:id="@+id/FA"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:layout_weight="0.2" />
+    <CheckBox
+        android:id="@+id/FS"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:layout_weight="0.2" />
+    <CheckBox
+        android:id="@+id/FD"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:layout_weight="0.2" />
+    <CheckBox
+        android:id="@+id/FV"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:layout_weight="0.2" />
+    <CheckBox
+        android:id="@+id/FX"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:layout_weight="0.1" />
+
+</LinearLayout>

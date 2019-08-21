@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="PLANT ADD"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        ></TextView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/round_border">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/margin5"
+                            android:layout_height="wrap_content">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:hint="Emp No"
+                            android:inputType="text"
+                            android:id="@+id/Empno"
+                            android:maxLength="10"
+                            android:padding="10dp"
+                            android:textSize="13dp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginLeft="18dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:background="@drawable/round_border">
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="@dimen/margin5"
+                                android:layout_height="wrap_content">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#00000000"
+                                android:hint="Card NO"
+                                android:id="@+id/Cardno"
+                                android:maxLength="10"
+                                android:inputType="number"
+                                android:textSize="12dp"
+                                android:padding="10dp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+
+
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginLeft="18dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:background="@drawable/round_border">
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="@dimen/margin5"
+                                android:layout_height="wrap_content">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#00000000"
+                                android:hint="Name"
+                                android:maxLength="50"
+                                android:inputType="text"
+                                android:id="@+id/name"
+                                android:textSize="12dp"
+                                android:padding="13dp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="18dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="20dp"
+                        android:text="Plant">
+
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_border">
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:hint="spinner NAME"
+                            android:inputType="text"
+                            android:id="@+id/plantspinner"
+                            android:textSize="13dp"/>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="18dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="20dp"
+                        android:text="Worklocation">
+
+                    </TextView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_border">
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:hint="spinner NAME"
+                            android:inputType="text"
+                            android:id="@+id/WorkLocationspinner"
+                            android:textSize="13dp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="18dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="20dp"
+                        android:text="Department">
+
+                    </TextView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_border">
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:hint="spinner NAME"
+                            android:inputType="text"
+                            android:id="@+id/DeptIdspinner"
+                            android:textSize="13dp"/>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="18dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="20dp"
+                        android:text="Subdepartment">
+
+                    </TextView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_border">
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:hint="spinner NAME"
+                            android:inputType="text"
+                            android:id="@+id/SubdeptIdspinner"
+                            android:textSize="13dp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="18dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="20dp"
+                        android:text="Empcategory">
+
+                    </TextView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_border">
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:hint="spinner NAME"
+                            android:inputType="text"
+                            android:id="@+id/EmpcatgIdspinner"
+                            android:textSize="13dp"/>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="18dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="20dp"
+                        android:text="Designation">
+
+                    </TextView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_border">
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:hint="spinner NAME"
+                            android:inputType="text"
+                            android:id="@+id/Designidspinner"
+                            android:textSize="13dp"/>
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginLeft="18dp"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:orientation="horizontal"
+                            android:layout_marginRight="@dimen/margin5"
+                            android:background="@drawable/round_border">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:layout_weight="2">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:background="#00000000"
+                                    android:hint="DOJ"
+                                    android:id="@+id/dojdate"
+                                    android:layout_weight="1.7"
+                                    android:inputType="date"
+                                    android:textSize="12dp"
+                                    android:padding="13dp" />
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="24dp"
+                                    android:background="#00000000"
+                                    android:hint="LBT DATE"
+                                    android:layout_weight=".3"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_date_range"
+                                    android:inputType="date"
+                                    />
+
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="3"
+                            android:background="@drawable/round_border">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:layout_weight="2">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:background="#00000000"
+                                    android:hint="DOL"
+                                    android:id="@+id/doldate"
+                                    android:layout_weight="1.7"
+                                    android:inputType="date"
+                                    android:textSize="12dp"
+                                    android:padding="13dp" />
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="24dp"
+                                    android:background="#00000000"
+                                    android:hint="LBT DATE"
+                                    android:layout_weight=".3"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_date_range"
+                                    android:inputType="date"
+                                    />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginLeft="18dp"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:orientation="horizontal"
+                            android:layout_marginRight="@dimen/margin5"
+                            android:background="@drawable/round_border">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:layout_weight="2">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:background="#00000000"
+                                    android:hint="DOB"
+                                    android:id="@+id/datebirth"
+                                    android:layout_weight="1.7"
+                                    android:inputType="date"
+                                    android:textSize="12dp"
+                                    android:padding="13dp" />
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="24dp"
+                                    android:background="#00000000"
+                                    android:hint="LBT DATE"
+                                    android:layout_weight=".3"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_date_range"
+                                    android:inputType="date"
+                                    />
+
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="3"
+                            android:background="@drawable/round_border">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:layout_weight="2">
+
+
+                                <EditText
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:background="#00000000"
+                                    android:hint="Salary"
+                                    android:id="@+id/salary"
+                                    android:layout_weight="1.7"
+                                    android:maxLength="9"
+                                    android:inputType="date"
+                                    android:textSize="12dp"
+                                    android:padding="13dp" />
+
+
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+
+
+
+                    </LinearLayout>
+
+
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginLeft="18dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:background="@drawable/round_border">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="@dimen/margin5"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="#00000000"
+                                    android:hint="MOBILE NO"
+                                    android:id="@+id/editTextPhone"
+                                    android:inputType="phone"
+                                    android:maxLength="10"
+                                    android:textSize="12dp"
+                                    android:padding="10dp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginLeft="18dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:background="@drawable/round_border">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="@dimen/margin5"
+                                android:layout_height="wrap_content">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#00000000"
+                                android:hint="EMAIL ID"
+                                android:id="@+id/email"
+                                android:maxLength="50"
+                                android:inputType="textEmailAddress"
+                                android:textSize="12dp"
+                                android:padding="10dp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginLeft="18dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:background="@drawable/round_border">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                               android:layout_marginTop="@dimen/margin5"
+                                android:layout_height="wrap_content">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#00000000"
+                                android:hint="Aadhaarno No"
+                                android:inputType="number"
+                                android:maxLength="12"
+                                android:id="@+id/Adtherno"
+                                android:textSize="12dp"
+                                android:padding="10dp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="2"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_marginLeft="18dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Isfree"
+            android:id="@+id/isfree"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"/>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center"
+        android:layout_marginLeft="18dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Isactive"
+            android:id="@+id/checkBoxAgree"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>

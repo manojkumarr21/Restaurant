@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.genn.info.restaurant">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:appComponentFactory="whateverString"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:appComponentFactory">
+        <activity android:name=".Activity.ProtectCategory"></activity>
+        <activity android:name=".Activity.Finyear" />
+        <activity android:name=".Activity.Ledger" />
+        <activity android:name=".Activity.Ledgersubgrp" />
+        <activity android:name=".Activity.Ledgergroup" />
+        <activity android:name=".Activity.Employee" />
+        <activity android:name=".Activity.Workdivision" />
+        <activity android:name=".Activity.Subdepartment" />
+        <activity android:name=".Activity.Empcategory" />
+        <activity android:name=".Activity.Designation" />
+        <activity android:name=".Activity.Department" />
+        <activity android:name=".Activity.Store" />
+        <activity android:name=".Activity.Permission_Template" />
+        <activity android:name=".Activity.SelectedListActivity" />
+        <activity android:name=".Activity.Templatemodulemaster" />
+        <activity android:name=".Activity.Templatemaster" />
+        <activity android:name=".Activity.User" />
+        <activity android:name=".Activity.Usergroup" />
+        <activity android:name=".Activity.Varientmaster" />
+        <activity android:name=".Activity.Uom" />
+        <activity
+            android:name=".Activity.Plantmaster"
+            android:label="PlantMaster" />
+        <activity
+            android:name=".Activity.Bussinessmaster"
+            android:label="BussinessMaster" />
+        <activity
+            android:name=".Activity.SplashActivityFinal"
+            android:theme="@style/Notheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity.Login"
+            android:theme="@style/Notheme" />
+        <activity android:name=".Activity.Payment" />
+        <activity android:name=".Activity.Report" />
+        <activity android:name=".Activity.Ingredient" />
+        <activity android:name=".Activity.Customer" />
+        <activity
+            android:name=".Activity.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".Activity.Product" />
+        <activity android:name=".Activity.LocalAdminprofile" />
+        <activity android:name=".Activity.Userview" />
+        <activity
+            android:name=".Activity.Masterview"
+            android:theme="@style/Notheme" />
+        <activity
+            android:name=".Activity.LocalAdmin"
+            android:theme="@style/Notheme" />
+        <activity
+            android:name=".Activity.MasterAdmin"
+            android:theme="@style/Notheme" />
+        <activity
+            android:name=".Activity.Admin"
+            android:label="@string/admin" />
+        <activity android:name=".Activity.Dashboard" />
+        <activity
+            android:name=".Activity.Searhitemselected"
+            android:theme="@style/Notheme" />
+        <activity android:name=".Activity.Fooditem_search" />
+        <activity android:name=".MainActivity" />
+    </application>
+
+</manifest>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:id="@+id/menu_search"
+        android:title="search"
+        android:icon="@drawable/ic_search_black"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/menu_scanner"
+        android:title="printer"
+        android:icon="@drawable/barcode"
+        app:showAsAction="always"/>
+
+        <item android:id="@+id/menu_printer"
+        android:title="printer"
+        android:icon="@drawable/ic_print"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/info"
+        android:icon="@drawable/more"
+        app:showAsAction="always"
+        android:title="info">
+        <menu>
+
+            <item android:id="@+id/menu_return"
+                android:icon="@drawable/coins_money"
+                android:title="Return/Refunds"
+                />
+            <item android:id="@+id/menu_logoff"
+                android:title="Log off"
+                android:icon="@drawable/shutdown"/>
+            <item android:id="@+id/menu_help"
+                android:title="Help video"
+                android:icon="@drawable/support"/>
+
+        </menu>
+    </item>
+
+    <!--<item android:id="@+id/menu_main"
+        android:title="menumain"
+        android:icon="@drawable/ic_menu_black"
+        app:showAsAction="always"/>
+-->
+
+</menu>
