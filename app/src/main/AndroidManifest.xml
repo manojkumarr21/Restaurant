@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".Activity.ProtectCategory"></activity>
+        <activity android:name=".Activity.ItemCategory"></activity>
+        <activity android:name=".Activity.ProtectCategory" />
         <activity android:name=".Activity.Finyear" />
         <activity android:name=".Activity.Ledger" />
         <activity android:name=".Activity.Ledgersubgrp" />

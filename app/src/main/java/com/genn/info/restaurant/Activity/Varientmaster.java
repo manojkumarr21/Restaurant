@@ -21,11 +21,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.genn.info.restaurant.Connection.ConnectionClass;
@@ -41,6 +44,7 @@ import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Length;
 
 import java.io.IOError;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,6 +52,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -89,7 +94,9 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
 
     String msg;
     String ID, status, ed_uom, edit_plant = null, creatby, creatdate;
+    Spinner spinnerlegertype;
 
+    String ledgersubgropnameid,legergrouptype,plantname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,9 +244,9 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
         List<Map<String, String>> MyData = null;
         Varientmodel mydata = new Varientmodel();
         MyData = mydata.doInBackground();
-        String[] fromwhere = {"Variantname", "Sortorder", "VariantID"};
+        String[] fromwhere = {"Variantname","ID"};
 
-        int[] viewswhere = {R.id.variname, R.id.sort, R.id.idview};
+        int[] viewswhere = {R.id.variname, R.id.idview};
 
         ADAhere = new SimpleAdapter(Varientmaster.this, MyData, R.layout.varientadd, fromwhere, viewswhere) {
             @Override
@@ -267,8 +274,8 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
                     @Override
                     public void onClick(View v) {
                         HashMap<String, Object> obj = (HashMap<String, Object>) ADAhere.getItem(position);
-                        ID = (String) obj.get("VariantID");
-                       editCustomDialog();
+                        ID = (String) obj.get("ID");
+                        editCustomDialog();
                         Toast.makeText(Varientmaster.this, ID, Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -278,7 +285,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
                     @Override
                     public void onClick(View v) {
                         HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
-                        ID=(String)obj.get("VariantID");
+                        ID=(String)obj.get("ID");
                         deleteCustomDialog();
                     }
                 });
@@ -317,11 +324,94 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
         builder.setView(dialogView);
 
         varientname = dialogView.findViewById(R.id.et_varientname);
-        sortid = dialogView.findViewById(R.id.et_varientorder);
+        spinnerlegertype=dialogView.findViewById(R.id.spinnerledgertype);
 
         checkBoxAgree = dialogView.findViewById(R.id.checkBoxAgree);
 
         checkBoxAgree.setVisibility(View.GONE);
+
+
+
+
+        String storequeery = "select LedgergrpID,Ledgergrpname from Mas_Ledgergroup";
+        try {
+            connect=connectionClass.CONN();
+            stmt = connect.prepareStatement(storequeery);
+            rs = stmt.executeQuery();
+            ArrayList<String> data = new ArrayList<String>();
+
+            while (rs.next()) {
+
+                String id = rs.getString("LedgergrpID");
+                String Bussnessname = rs.getString("Ledgergrpname");
+                data.add(Bussnessname);
+
+            }
+            data.add(0,"select one");
+            String[] array = data.toArray(new String[0]);
+            ArrayAdapter NoCoreAdapter = new ArrayAdapter(this,
+                    android.R.layout.simple_list_item_1, data);
+            spinnerlegertype.setAdapter(NoCoreAdapter);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+        spinnerlegertype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+
+            public void onItemSelected(AdapterView<?> parent, View view,
+
+                                       int position, long id) {
+
+                String name = spinnerlegertype.getSelectedItem().toString();
+
+
+                if (spinnerlegertype.getSelectedItem() == "select one") {
+
+                    //Do nothing.
+                } else {
+
+                    String query = "select LedgergrpID,Ledgergrpname,Ledgertype from Mas_Ledgergroup where Ledgergrpname='" + name + "'";
+                    try {
+                        connect = connectionClass.CONN();
+                        stmt = connect.prepareStatement(query);
+                        rs = stmt.executeQuery();
+                        ArrayList<String> data = new ArrayList<String>();
+
+                        if (rs.next()) {
+                            ledgersubgropnameid = rs.getString("LedgergrpID");
+                            legergrouptype = rs.getString("Ledgertype");
+
+                        }
+
+
+                    } catch (SQLException e) {
+
+                        e.printStackTrace();
+
+                    }
+
+//                    ledgertype.setText(""+legergrouptype);
+                    Toast.makeText(Varientmaster.this, "" + ledgersubgropnameid, Toast.LENGTH_SHORT)
+
+                            .show();
+
+                }
+            }
+
+            @Override
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+        });
+
+
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 
@@ -355,19 +445,18 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
 
 
                 varinamestr = varientname.getText().toString();
-                varisort = sortid.getText().toString();
+//                varisort = sortid.getText().toString();
 
 
                 if (varientname.getText().toString().equals("")) {
                     varientname.requestFocus();
                     varientname.setError("FIELD CANNOT BE EMPTY");
-                }else if (sortid.getText().toString().equals("")){
-                    sortid.requestFocus();
-                    sortid.setError("FIELD CANNOT BE EMPTY");
+                }else if (spinnerlegertype.getSelectedItem() == "select one"){
+                  buildDialog("Please Select The Ledgergroup");
                 }
                 else {
 
-                    String query = "select count(*) as row from Mas_Variant where Sortorder='" + varisort + "'";
+                    String query = "select count(*) as row from Mas_Variant where Variantname='" + varinamestr + "'";
                     try {
 
                         connect = connectionClass.CONN();
@@ -425,7 +514,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
         builder.setView(dialogView);
 
 
-        String query = "select * from Mas_Variant where VariantID='" + ID + "'";
+        String query = "select * from Mas_Variant where ID='" + ID + "'";
         try {
 
             connect = connectionClass.CONN();
@@ -435,9 +524,9 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
 
             if (rs.next()) {
 
-                bussid = String.valueOf(rs.getString("VariantID"));
+                bussid = String.valueOf(rs.getString("ID"));
                 edit_plant = String.valueOf(rs.getString("Variantname"));
-                edit_sort = String.valueOf(rs.getString("Sortorder"));
+                edit_uom = String.valueOf(rs.getString("LedgetgrpID"));
                 edit_creatby = String.valueOf(rs.getString("Createdby"));
                 edit_creatdate = String.valueOf(rs.getString("Createddate"));
 
@@ -453,8 +542,10 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
 
 
         varientname = dialogView.findViewById(R.id.et_varientname);
-        sortid = dialogView.findViewById(R.id.et_varientorder);
+        varientname.setEnabled(false);
 
+        spinnerlegertype=dialogView.findViewById(R.id.spinnerledgertype);
+spinnerlegertype.setEnabled(false);
         checkBoxAgree = dialogView.findViewById(R.id.checkBoxAgree);
 
 
@@ -462,7 +553,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
 
 
         varientname.setText("" + edit_plant);
-        sortid.setText("" + edit_sort);
+//        sortid.setText("" + edit_sort);
 
         creatby = "" + edit_creatby;
         creatdate = "" + edit_creatdate;
@@ -471,6 +562,115 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
         } else {
             checkBoxAgree.setChecked(false);
         }
+
+
+
+        String subdepidnamequery = "select * from Mas_Ledgergroup  where LedgergrpID= '"+edit_uom+"'";
+        try {
+            connect=connectionClass.CONN();
+            stmt = connect.prepareStatement(subdepidnamequery);
+            rs = stmt.executeQuery();
+            ArrayList<String> data = new ArrayList<String>();
+
+            if (rs.next()) {
+
+                String id = rs.getString("LedgergrpID");
+                plantname= rs.getString("Ledgergrpname");
+
+
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+
+        String storequery = "select * from Mas_Ledgergroup  where LedgergrpID != '"+edit_uom+"'";
+        try {
+            connect=connectionClass.CONN();
+            stmt = connect.prepareStatement(storequery);
+            rs = stmt.executeQuery();
+            ArrayList<String> data = new ArrayList<String>();
+
+            while (rs.next()) {
+
+                String id = rs.getString("LedgergrpID");
+                String Bussnessname = rs.getString("Ledgergrpname");
+                data.add(Bussnessname);
+
+            }
+
+            data.add(0,""+plantname);
+            String[] array = data.toArray(new String[0]);
+            ArrayAdapter NoCoreAdapter = new ArrayAdapter(this,
+                    android.R.layout.simple_list_item_1, data);
+            spinnerlegertype.setAdapter(NoCoreAdapter);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+        spinnerlegertype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+
+            public void onItemSelected(AdapterView<?> parent, View view,
+
+                                       int position, long id) {
+
+                String name = spinnerlegertype.getSelectedItem().toString();
+
+
+                if (spinnerlegertype.getSelectedItem() == "select one") {
+
+                    //Do nothing.
+                } else {
+                    String query = "select * from Mas_Ledgergroup where Ledgergrpname='" + name + "'";
+                    try {
+                        connect = connectionClass.CONN();
+                        stmt = connect.prepareStatement(query);
+                        rs = stmt.executeQuery();
+                        ArrayList<String> data = new ArrayList<String>();
+
+                        if (rs.next()) {
+                            ledgersubgropnameid = rs.getString("LedgergrpID");
+                            legergrouptype = rs.getString("Ledgertype");
+
+                        }
+
+
+                    } catch (SQLException e) {
+
+                        e.printStackTrace();
+
+                    }
+
+
+                    Toast.makeText(Varientmaster.this, "" + ledgersubgropnameid, Toast.LENGTH_SHORT)
+
+                            .show();
+
+                }
+            }
+
+            @Override
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+        });
+
+
+
+
+
+
+
+
 
 
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
@@ -527,18 +727,15 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
 
 
                 varinamestr = varientname.getText().toString();
-                varisort = sortid.getText().toString();
+//                varisort = sortid.getText().toString();
 
 
                 if (varientname.getText().toString().equals("")) {
                     varientname.requestFocus();
                     varientname.setError("FIELD CANNOT BE EMPTY");
-                }else if (sortid.getText().toString().equals("")){
-                    sortid.requestFocus();
-                    sortid.setError("FIELD CANNOT BE EMPTY");
                 }
                 else {
-                    String query = "select count(*) as row,VariantID from Mas_Variant where Variantname='" + varinamestr + "'group by  VariantID";
+                    String query = "select count(*) as row,ID from Mas_Variant where Variantname='" + varinamestr + "'group by  ID";
                     try {
 
                         connect = connectionClass.CONN();
@@ -554,7 +751,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
 
                         if (rs.next()) {
                             String bussinessid = String.valueOf(rs.getString("row"));
-                            String BussID = String.valueOf(rs.getString("VariantID"));
+                            String BussID = String.valueOf(rs.getString("ID"));
 
                             if (bussinessid.equals("1") && BussID.equals("" + ID)) {
                                 Update update = new Update();
@@ -595,7 +792,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        String query = "DELETE FROM Mas_Variant WHERE VariantID='" + ID + "'";
+                        String query = "DELETE FROM Mas_Variant WHERE ID='" + ID + "'";
                         try {
                             connect = connectionClass.CONN();
 //                    stmt = connect.prepareStatement(query);
@@ -611,7 +808,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
                         List<Map<String, String>> MyData = null;
                         Varientmodel mydata = new Varientmodel();
                         MyData = mydata.doInBackground();
-                        String[] fromwhere = {"Variantname", "Sortorder", "VariantID"};
+                        String[] fromwhere = {"Variantname", "Sortorder", "ID"};
 
                         int[] viewswhere = {R.id.variname, R.id.sort, R.id.idview};
 
@@ -641,7 +838,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
                                     @Override
                                     public void onClick(View v) {
                                         HashMap<String, Object> obj = (HashMap<String, Object>) ADAhere.getItem(position);
-                                        ID = (String) obj.get("VariantID");
+                                        ID = (String) obj.get("ID");
                                         editCustomDialog();
                                         Toast.makeText(Varientmaster.this, ID, Toast.LENGTH_SHORT).show();
                                     }
@@ -651,8 +848,9 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
                                 deleteicon.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+
                                         HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
-                                        ID=(String)obj.get("VariantID");
+                                        ID=(String)obj.get("ID");
                                         deleteCustomDialog();
                                     }
                                 });
@@ -703,9 +901,9 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
             List<Map<String, String>> MyData = null;
             Varientmodel mydata = new Varientmodel();
             MyData = mydata.doInBackground();
-            String[] fromwhere = {"Variantname", "Sortorder", "VariantID"};
+            String[] fromwhere = {"Variantname","ID"};
 
-            int[] viewswhere = {R.id.variname, R.id.sort, R.id.idview};
+            int[] viewswhere = {R.id.variname, R.id.idview};
 
             ADAhere = new SimpleAdapter(Varientmaster.this, MyData, R.layout.varientadd, fromwhere, viewswhere) {
                 @Override
@@ -733,7 +931,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
                         @Override
                         public void onClick(View v) {
                             HashMap<String, Object> obj = (HashMap<String, Object>) ADAhere.getItem(position);
-                            ID = (String) obj.get("VariantID");
+                            ID = (String) obj.get("ID");
                             editCustomDialog();
                             Toast.makeText(Varientmaster.this, ID, Toast.LENGTH_SHORT).show();
                         }
@@ -744,7 +942,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
                         @Override
                         public void onClick(View v) {
                             HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
-                            ID=(String)obj.get("VariantID");
+                            ID=(String)obj.get("ID");
                             deleteCustomDialog();
                         }
                     });
@@ -775,9 +973,18 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
                         z = "Error in connection with SQL server";
                     } else {
 
-                        String query = "Insert into Mas_Variant(Variantname,Sortorder,Createdby,Createddate) values ('" + varinamestr + "','" + varisort + "','" + userid + "','" + currentdate + "')";
-                        Statement stmt = con.createStatement();
-                        ResultSet rs = stmt.executeQuery(query);
+                        // Get db connection first.
+                        Connection dbConn = connectionClass.CONN();
+                        // Create CallableStatement object.
+                        String storedProcudureCall = "{call sp_Insert_Varient(?,?,?)};";
+                        CallableStatement cStmt = dbConn.prepareCall(storedProcudureCall);
+                        final ArrayList list = new ArrayList();
+                        // Set input parameters value.
+                        cStmt.setString(1,varinamestr);
+                        cStmt.setInt(2, Integer.parseInt(ledgersubgropnameid));
+                        cStmt.setInt(3, Integer.parseInt(userid));
+                        // Execute stored procedure.
+                        rs = cStmt.executeQuery();
                         z = "Login successfull";
                         isSuccess = true;
                     }
@@ -836,9 +1043,9 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
             List<Map<String, String>> MyData = null;
             Varientmodel mydata = new Varientmodel();
             MyData = mydata.doInBackground();
-            String[] fromwhere = {"Variantname", "Sortorder", "VariantID"};
+            String[] fromwhere = {"Variantname","ID"};
 
-            int[] viewswhere = {R.id.variname, R.id.sort, R.id.idview};
+            int[] viewswhere = {R.id.variname, R.id.idview};
 
             ADAhere = new SimpleAdapter(Varientmaster.this, MyData, R.layout.varientadd, fromwhere, viewswhere) {
                 @Override
@@ -866,7 +1073,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
                         @Override
                         public void onClick(View v) {
                             HashMap<String, Object> obj = (HashMap<String, Object>) ADAhere.getItem(position);
-                            ID = (String) obj.get("VariantID");
+                            ID = (String) obj.get("ID");
                             editCustomDialog();
                             Toast.makeText(Varientmaster.this, ID, Toast.LENGTH_SHORT).show();
                         }
@@ -877,7 +1084,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
                         @Override
                         public void onClick(View v) {
                             HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
-                            ID=(String)obj.get("VariantID");
+                            ID=(String)obj.get("ID");
                             deleteCustomDialog();
                         }
                     });
@@ -886,7 +1093,6 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
             };
 
             varientlist.setAdapter(ADAhere);
-
             buildDialog( "Updated Sucessfully");
         }
 
@@ -895,7 +1101,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
             // Inserting in the database
             msg = "";
 
-            if (varinamestr.trim().equals("") || varisort.trim().equals("")) {
+            if (varinamestr.trim().equals("")) {
 
                 z = "Please enter Variname and sortorder";
 
@@ -908,7 +1114,7 @@ public class Varientmaster extends AppCompatActivity implements Validator.Valida
                     } else {
 
 //                        String query = "Insert into Mas_Business(Bussname,Add1,Add2,Add3,Add4,Add5,Pincode,Email,Web,Mobile,LBTno,LBTdt,Expdt,GSTno,panno,Image,Createdby,Createddate) values ('" + ed_bussname + "','" + ed_door + "','" + ed_street + "','" + ed_city + "','" + ed_state + "','" + ed_contry + "','" + ed_pincode + "','" + ed_email + "','" + ed_web + "','" + ed_mobile + "','" + ed_lbtno + "','" + te_lbtdt + "','" + te_wep_dt + "','" + ed_gstno + "','" + ed_panno + "','" + encodedImage + "','" + name + "','" + currentdate + "')";
-                        String query = "UPDATE Mas_Variant SET Variantname='" + varinamestr + "',Sortorder='" + varisort + "',Createdby='" + creatby + "',Createddate='" + creatdate + "',Updatedby='" + userid + "',Updateddate='" + currentdate + "' ,Isactive='" + checkBoxAgree.isChecked() + "' WHERE VariantID='" + ID + "';";
+                        String query = "UPDATE Mas_Variant SET Createdby='" + creatby + "',Createddate='" + creatdate + "',Updatedby='" + userid + "',Updateddate='" + currentdate + "' ,Isactive='" + checkBoxAgree.isChecked() + "' WHERE ID='" + ID + "';";
                         Statement stmt = con.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
                         z = "Login successfull";

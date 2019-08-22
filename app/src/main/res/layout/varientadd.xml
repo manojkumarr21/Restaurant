@@ -21,23 +21,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/variname"
-            android:layout_weight="1"
+            android:layout_weight="2.1"
             android:gravity="center"
             android:textStyle="bold"
             android:text="dddddddddddddd">
 
         </TextView>
 
- <TextView
-         android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/sort"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:text="dddddddddddddd">
-
-        </TextView>
 
 
 

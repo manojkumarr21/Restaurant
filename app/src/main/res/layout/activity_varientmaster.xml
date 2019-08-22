@@ -26,7 +26,7 @@
                 android:id="@+id/varientname"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".8"
+                android:layout_weight="1.7"
                 android:gravity="center"
                 android:text="VARIENT NAME"
                 android:textColor="@color/white"
@@ -37,12 +37,13 @@
                 android:id="@+id/sort"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".9"
+                android:layout_weight=".0"
                 android:text="SORT ORDER"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="12dp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/unit"
                 android:text="STATUS"

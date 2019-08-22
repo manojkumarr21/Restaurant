@@ -37,9 +37,8 @@ public class Varientmodel{
                 ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()){
                     Map<String,String> datanum=new HashMap<String,String>();
-                    datanum.put("VariantID",rs.getString("VariantID"));
+                    datanum.put("ID",rs.getString("ID"));
                     datanum.put("Variantname",rs.getString("Variantname"));
-                    datanum.put("Sortorder",rs.getString("Sortorder"));
                     datanum.put("Isactive",rs.getString("Isactive"));
                     data.add(datanum);
                 }
