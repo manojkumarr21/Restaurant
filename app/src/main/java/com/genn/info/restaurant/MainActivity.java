@@ -23,6 +23,7 @@ import com.genn.info.restaurant.Activity.PayTerm;
 import com.genn.info.restaurant.Activity.Payment;
 import com.genn.info.restaurant.Activity.Permission_Template;
 import com.genn.info.restaurant.Activity.Plantmaster;
+import com.genn.info.restaurant.Activity.PoCancelReson;
 import com.genn.info.restaurant.Activity.Recipe;
 import com.genn.info.restaurant.Activity.Report;
 import com.genn.info.restaurant.Activity.SettingsActivity;
@@ -35,8 +36,10 @@ import com.genn.info.restaurant.Activity.Uom;
 import com.genn.info.restaurant.Activity.User;
 import com.genn.info.restaurant.Activity.Usergroup;
 import com.genn.info.restaurant.Activity.Varientmaster;
+import com.genn.info.restaurant.Activity.WasteType;
 import com.genn.info.restaurant.Activity.Workdivision;
 import com.genn.info.restaurant.Connection.DBHelper;
+import com.genn.info.restaurant.Model.Pocancelmodel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
@@ -287,6 +290,14 @@ Button pay;
                 }
               else if (id == R.id.ordertype) {
                     startActivity(new Intent(MainActivity.this, OrderType.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+             else if (id == R.id.pocancel) {
+                    startActivity(new Intent(MainActivity.this, PoCancelReson.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+             else if (id == R.id.wastetype) {
+                    startActivity(new Intent(MainActivity.this, WasteType.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                 }
 

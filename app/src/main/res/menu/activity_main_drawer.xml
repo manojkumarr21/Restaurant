@@ -165,6 +165,16 @@
                 android:id="@+id/ordertype"
                 android:icon="@drawable/nav_policy"
                 android:title="OrderType" />
+
+            <item
+                android:id="@+id/pocancel"
+                android:icon="@drawable/nav_policy"
+                android:title="PoCancelReason" />
+
+            <item
+                android:id="@+id/wastetype"
+                android:icon="@drawable/nav_policy"
+                android:title="Waste Type" />
            <!-- <item
                 android:id="@+id/nav_tracking"
                 android:icon="@drawable/nav_request"
