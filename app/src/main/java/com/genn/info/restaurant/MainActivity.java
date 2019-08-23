@@ -12,6 +12,7 @@ import com.genn.info.restaurant.Activity.Empcategory;
 import com.genn.info.restaurant.Activity.Employee;
 import com.genn.info.restaurant.Activity.Finyear;
 import com.genn.info.restaurant.Activity.Ingredient;
+import com.genn.info.restaurant.Activity.ItemCategory;
 import com.genn.info.restaurant.Activity.Ledger;
 import com.genn.info.restaurant.Activity.Ledgergroup;
 import com.genn.info.restaurant.Activity.Ledgersubgrp;
@@ -257,6 +258,10 @@ Button pay;
                 }
               else if (id == R.id.finyear) {
                     startActivity(new Intent(MainActivity.this, Finyear.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+              else if (id == R.id.itemcatgory) {
+                    startActivity(new Intent(MainActivity.this, ItemCategory .class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                 }
 

@@ -141,6 +141,10 @@
                 android:id="@+id/finyear"
                 android:icon="@drawable/nav_policy"
                 android:title="Finasial year" />
+            <item
+                android:id="@+id/itemcatgory"
+                android:icon="@drawable/nav_policy"
+                android:title="Itemcatgory" />
            <!-- <item
                 android:id="@+id/nav_tracking"
                 android:icon="@drawable/nav_request"

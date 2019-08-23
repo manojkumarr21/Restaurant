@@ -458,10 +458,10 @@ public class Category extends Fragment {
             }
         });
 
-        builder.setNeutralButton("DELETE", new DialogInterface.OnClickListener() {
+        builder.setNeutralButton("", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String query = "DELETE FROM Mas_Category WHERE CatgID='" + ID + "'";
+              /*  String query = "DELETE FROM Mas_Category WHERE CatgID='" + ID + "'";
                 try {
                     connect = connectionClass.CONN();
 //                    stmt = connect.prepareStatement(query);
@@ -514,7 +514,7 @@ public class Category extends Fragment {
                 };
 
                 categorylist.setAdapter(ADAhere);
-                buildDialog("Deleted Sucessfully");
+                buildDialog("Deleted Sucessfully");*/
             }
         });
 
