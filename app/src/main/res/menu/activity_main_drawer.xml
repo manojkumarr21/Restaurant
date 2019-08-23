@@ -145,6 +145,26 @@
                 android:id="@+id/itemcatgory"
                 android:icon="@drawable/nav_policy"
                 android:title="Itemcatgory" />
+            <item
+                android:id="@+id/itemsubcategory"
+                android:icon="@drawable/nav_policy"
+                android:title="ItemSubcatgory" />
+            <item
+                android:id="@+id/recipe"
+                android:icon="@drawable/nav_policy"
+                android:title="Recipe" />
+            <item
+                android:id="@+id/terms"
+                android:icon="@drawable/nav_policy"
+                android:title="Terms" />
+            <item
+                android:id="@+id/payterms"
+                android:icon="@drawable/nav_policy"
+                android:title="PayTerms" />
+            <item
+                android:id="@+id/ordertype"
+                android:icon="@drawable/nav_policy"
+                android:title="OrderType" />
            <!-- <item
                 android:id="@+id/nav_tracking"
                 android:icon="@drawable/nav_request"

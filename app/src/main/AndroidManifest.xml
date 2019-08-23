@@ -22,7 +22,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".Activity.ItemCategory"></activity>
+        <activity android:name=".Activity.OrderType"></activity>
+        <activity android:name=".Activity.PayTerm" />
+        <activity android:name=".Activity.Terms" />
+        <activity android:name=".Activity.Recipe" />
+        <activity android:name=".Activity.ItemSubcatg" />
+        <activity android:name=".Activity.ItemCategory" />
         <activity android:name=".Activity.ProtectCategory" />
         <activity android:name=".Activity.Finyear" />
         <activity android:name=".Activity.Ledger" />

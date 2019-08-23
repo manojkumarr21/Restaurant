@@ -12,14 +12,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.AndroidRuntimeException;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,22 +26,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.genn.info.restaurant.Connection.ConnectionClass;
 import com.genn.info.restaurant.Connection.DBHelper;
-import com.genn.info.restaurant.Fragment.Category;
-import com.genn.info.restaurant.Model.Categorymodel;
-import com.genn.info.restaurant.Model.ItemCatgmodel;
+import com.genn.info.restaurant.Model.Paytermmodel;
+import com.genn.info.restaurant.Model.Uommodel;
 import com.genn.info.restaurant.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Length;
 
 import java.io.IOError;
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -54,13 +47,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ItemCategory extends AppCompatActivity {
+public class PayTerm extends AppCompatActivity {
 
     ConnectionClass connectionClass;
     Connection connect;
@@ -78,35 +70,37 @@ public class ItemCategory extends AppCompatActivity {
 
 
     @Length(min = 1, max = 50)
-    EditText itemcatgname;
+    EditText Payterm;
 
-    String itemcatgnamestr,itemcatgnameid,edit_itemcatgnameype;
+    @Length(min = 1, max = 50)
+    EditText payday;
+
+    String paytermstr,paydaystr;
 
     ResultSet rs;
     PreparedStatement stmt;
 
 
-    ListView itemcatgnamelist;
+    ListView paytermlist;
     SimpleAdapter ADAhere;
 
-    String[] smaterialtype = {"Select One","Income","Expense","Asset"};
+
     CheckBox checkBoxAgree;
 
     String msg;
-    String ID,status,ed_uom,edit_plant= null,creatby,creatdate;
-    Spinner spinnerlegertype;
-
-
+    String ID,status,ed_uom,ed_uomname,edit_plant= null,creatby,creatdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_category);
+        setContentView(R.layout.activity_pay_term);
 
 
         connectionClass = new ConnectionClass();
 
-        dbHelper = new DBHelper(this);
+
+
+
         dbHelper=new DBHelper(this);
         mdrawerlayout=(DrawerLayout)findViewById(R.id.drawerlayout);
         mToggle=new ActionBarDrawerToggle(this,mdrawerlayout,R.string.open,R.string.close);
@@ -114,7 +108,7 @@ public class ItemCategory extends AppCompatActivity {
         mToggle.syncState();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
-        currentdate = dateFormat.format(date);
+        currentdate=dateFormat.format(date);
 
         Cursor res1 = dbHelper.getAllLoginData();
 
@@ -124,7 +118,10 @@ public class ItemCategory extends AppCompatActivity {
             name = res1.getString(1);
             pass = res1.getString(2);
             userid = res1.getString(3);
+
         }
+
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -143,13 +140,13 @@ public class ItemCategory extends AppCompatActivity {
 
                 if (id == R.id.nav_profile) {
 
-                    startActivity(new Intent(ItemCategory.this, Admin.class));
+                    startActivity(new Intent(PayTerm.this, Admin.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 
                 } else if (id == R.id.nav_dashboard) {
 
 
-                    startActivity(new Intent(ItemCategory.this, Userview.class));
+                    startActivity(new Intent(PayTerm.this, Userview.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
               /*      dash_linearLayout.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this, MainActivity.class));*/
@@ -157,7 +154,7 @@ public class ItemCategory extends AppCompatActivity {
                 }else if (id == R.id.product) {
 
 
-                    startActivity(new Intent(ItemCategory.this, Product.class));
+                    startActivity(new Intent(PayTerm.this, Product.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
               /*      dash_linearLayout.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this, MainActivity.class));*/
@@ -165,7 +162,7 @@ public class ItemCategory extends AppCompatActivity {
                 }else if (id == R.id.nav_settings) {
 
 
-                    startActivity(new Intent(ItemCategory.this, SettingsActivity.class));
+                    startActivity(new Intent(PayTerm.this, SettingsActivity.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
               /*      dash_linearLayout.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this, MainActivity.class));*/
@@ -173,7 +170,7 @@ public class ItemCategory extends AppCompatActivity {
                 }else if (id == R.id.nav_policy) {
 
 
-                    startActivity(new Intent(ItemCategory.this, Customer.class));
+                    startActivity(new Intent(PayTerm.this, Customer.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
               /*      dash_linearLayout.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this, MainActivity.class));*/
@@ -181,7 +178,7 @@ public class ItemCategory extends AppCompatActivity {
                 }else if (id == R.id.nav_earningDeatils) {
 
 
-                    startActivity(new Intent(ItemCategory.this, Ingredient.class));
+                    startActivity(new Intent(PayTerm.this, Ingredient.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
               /*      dash_linearLayout.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this, MainActivity.class));*/
@@ -189,7 +186,7 @@ public class ItemCategory extends AppCompatActivity {
                 }else if (id == R.id.nav_claims) {
 
 
-                    startActivity(new Intent(ItemCategory.this, Report.class));
+                    startActivity(new Intent(PayTerm.this, Report.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
               /*      dash_linearLayout.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this, MainActivity.class));*/
@@ -197,32 +194,27 @@ public class ItemCategory extends AppCompatActivity {
                 }else if (id == R.id.nav_signout) {
 
                     dbHelper.deleteAll();
-                    startActivity(new Intent(ItemCategory.this, Login.class));
+                    startActivity(new Intent(PayTerm.this, Login.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 
                 }else if (id == R.id.bussiness) {
 
-                    startActivity(new Intent(ItemCategory.this, Bussinessmaster.class));
+                    startActivity(new Intent(PayTerm.this, Bussinessmaster.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 
                 }else if (id == R.id.plant) {
 
-                    startActivity(new Intent(ItemCategory.this, Plantmaster.class));
+                    startActivity(new Intent(PayTerm.this, Plantmaster.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 
                 }else if (id == R.id.uom) {
 
-                    startActivity(new Intent(ItemCategory.this, Uom.class));
+                    startActivity(new Intent(PayTerm.this, Uom.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 
                 }else if (id == R.id.Varient) {
 
-                    startActivity(new Intent(ItemCategory.this, Varientmaster.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-
-                }else if (id == R.id.usergroup) {
-
-                    startActivity(new Intent(ItemCategory.this, Usergroup.class));
+                    startActivity(new Intent(PayTerm.this, Varientmaster.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 
                 }
@@ -240,46 +232,49 @@ public class ItemCategory extends AppCompatActivity {
             }
         });
 
+        paytermlist=(ListView)findViewById(R.id.paytermlist);
 
-        itemcatgnamelist=findViewById(R.id.itemcatgnamelist);
 
-        List<Map<String, String>> MyData = null;
-        ItemCatgmodel mydata = new ItemCatgmodel();
-        MyData = mydata.doInBackground();
-        String[] fromwhere = {"ItemcatgName", "ItemcatgID"};
 
-        int[] viewswhere = {R.id.rank,R.id.idview};
 
-        ADAhere = new SimpleAdapter(getApplicationContext(), MyData, R.layout.itemcategory_listitem, fromwhere, viewswhere) {
+        List<Map<String,String>> MyData = null;
+        Paytermmodel mydata =new Paytermmodel();
+        MyData= mydata.doInBackground();
+        String[] fromwhere = { "Payterms","PayID"};
+
+        int[] viewswhere = {R.id.uomname ,R.id.idview};
+
+        ADAhere = new SimpleAdapter(PayTerm.this, MyData,R.layout.paytermadd, fromwhere, viewswhere){
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
 
-                HashMap<String, Object> obj = (HashMap<String, Object>) ADAhere.getItem(position);
+                HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
 //                ID=(String)obj.get("UomID");
-                status = (String) obj.get("Isactive");
+                status=(String)obj.get("Isactive");
 
-                View view = super.getView(position, convertView, parent);
+                View view=super.getView(position, convertView, parent);
 
 
-                ImageView imageView = view.findViewById(R.id.editicon);
-                ImageView deleteicon = view.findViewById(R.id.delicon);
-                CheckBox uomstatus = view.findViewById(R.id.quantity);
-                uomstatus.setEnabled(false);
 
-                if (status.equals("1")) {
+                ImageView imageView=view.findViewById(R.id.editicon);
+                ImageView deleteicon=view.findViewById(R.id.deleteicon);
+                CheckBox uomstatus=view.findViewById(R.id.uomstatus);
+
+                if (status.equals("1")){
                     uomstatus.setChecked(true);
-                } else {
+                }else{
                     uomstatus.setChecked(false);
                 }
+
 
 
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        HashMap<String, Object> obj = (HashMap<String, Object>) ADAhere.getItem(position);
-                        ID = (String) obj.get("ItemcatgID");
+                        HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
+                        ID=(String)obj.get("PayID");
                         editCustomDialog();
-                        Toast.makeText(getApplicationContext(), ID, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PayTerm.this, ID, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -287,16 +282,18 @@ public class ItemCategory extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
-                        ID=(String)obj.get("ItemcatgID");
+                        ID=(String)obj.get("PayID");
                         deleteCustomDialog();
-                        Toast.makeText(getApplicationContext(), ID, Toast.LENGTH_SHORT).show();
                     }
                 });
                 return view;
             }
         };
 
-        itemcatgnamelist.setAdapter(ADAhere);
+        paytermlist.setAdapter(ADAhere);
+
+
+
 
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -307,6 +304,8 @@ public class ItemCategory extends AppCompatActivity {
 
             }
         });
+
+
     }
 
 
@@ -316,7 +315,7 @@ public class ItemCategory extends AppCompatActivity {
         ViewGroup viewGroup = findViewById(android.R.id.content);
 
         //then we will inflate the custom alert dialog xml that we created
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.itemcatgaddlist, viewGroup, false);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.paytermaddlist, viewGroup, false);
 
 
         //Now we need an AlertDialog.Builder object
@@ -325,42 +324,12 @@ public class ItemCategory extends AppCompatActivity {
         //setting the view of the builder to our custom view that we already inflated
         builder.setView(dialogView);
 
-        itemcatgname = dialogView.findViewById(R.id.et_catename);
+        Payterm=dialogView.findViewById(R.id.uomname);
+        payday=dialogView.findViewById(R.id.et_uomname);
 
-//        circleImageView=dialogView.findViewById(R.id.category);
-
-        checkBoxAgree = dialogView.findViewById(R.id.checkBoxAgree);
+        checkBoxAgree=dialogView.findViewById(R.id.checkBoxAgree);
 
         checkBoxAgree.setVisibility(View.GONE);
-
-
-
-
-
-  /*      circleImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                selectImage();
-
-                if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)&& !Environment.getExternalStorageState().equals(Environment.MEDIA_CHECKING))
-                {
-                    Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(galleryIntent,RESULT_LOAD_IMAGE );
-                    // this will jump to onActivity Function after selecting image
-                }
-                else
-                {
-                    Toast.makeText(getActivity(), "No activity found to perform this task", Toast.LENGTH_SHORT).show();
-                }
-                // End Opening the Gallery and selecting media
-
-
-            }
-        });
-
-*/
-
-
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 
@@ -376,6 +345,8 @@ public class ItemCategory extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
+
+
             }
         });
 
@@ -386,71 +357,81 @@ public class ItemCategory extends AppCompatActivity {
 
 
 
-
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                itemcatgnamestr = itemcatgname.getText().toString();
-//                varisort = catesortid.getText().toString();
-//                imagestring=encodedImage;
 
-                if (itemcatgname.getText().toString().equals("")) {
-                    itemcatgname.requestFocus();
-                    itemcatgname.setError("FIELD CANNOT BE EMPTY");
-                }
-                else {
+                paytermstr = Payterm.getText().toString();
 
-                    String query = "select count(*) as row from Mas_Ledgergroup where Ledgergrpname='" + itemcatgnamestr +"Sales"+ "'";
+                if (Payterm.getText().toString().equals("")) {
+                    Payterm.requestFocus();
+                    Payterm.setError("FIELD CANNOT BE EMPTY");
+                }else if (payday.getText().toString().equals("")) {
+                    payday.requestFocus();
+                    payday.setError("FIELD CANNOT BE EMPTY");
+                } else {
+
+
+                    paytermstr = Payterm.getText().toString();
+                    paydaystr = payday.getText().toString();
+
+
+                    String query = "select count(*) as row from Mas_Payterms where Payterms='"+paytermstr+"'";
                     try {
 
-                        connect = connectionClass.CONN();
+                        connect=connectionClass.CONN();
 //                    stmt = connect.prepareStatement(query);
                         stmt = connect.prepareStatement(query);
                         rs = stmt.executeQuery();
 
 
                         if (rs.next()) {
-                            String bussinessid = String.valueOf(rs.getString("row"));
-                            if (bussinessid.equals("0")) {
-
-
-
+                            String bussinessid=String.valueOf(rs.getString("row"));
+                            if (bussinessid.equals("0")){
                                 UploadImage uploadImage = new UploadImage();
                                 uploadImage.execute("");
                                 alertDialog.dismiss();
 
-                            } else {
-                                Toast.makeText(getApplicationContext(), "ledgergroup  Already exit", Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(PayTerm.this, "UserName Already exit", Toast.LENGTH_SHORT).show();
                             }
 
                         }else{
                            UploadImage uploadImage = new UploadImage();
                             uploadImage.execute("");
+                            alertDialog.dismiss();
                         }
 
 
-                    } catch (SQLException e) {
+
+
+                    }catch (SQLException e) {
                         e.printStackTrace();
                     }
 
-                }
 
+                }
             }
         });
+
     }
+
+
+
+
 
     private void editCustomDialog() {
 
-        String edit_uom = null, edit_plant = null, edit_sort = null, edit_creatby = null, edit_creatdate = null, isactive = null;
+        String edit_uom = null,edit_plant= null,edit_creatby = null,edit_creatdate = null,isactive = null;
 
 
         //before inflating the custom alert dialog layout, we will get the current activity viewgroup
-        ViewGroup viewGroup =findViewById(android.R.id.content);
+        ViewGroup viewGroup = findViewById(android.R.id.content);
 
         //then we will inflate the custom alert dialog xml that we created
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.itemcatgaddlist, viewGroup, false);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.paytermaddlist, viewGroup, false);
 
 
         //Now we need an AlertDialog.Builder object
@@ -460,50 +441,58 @@ public class ItemCategory extends AppCompatActivity {
         builder.setView(dialogView);
 
 
-        String query = "select * from Mas_Itemcatg where ItemcatgID='" + ID + "'";
+        String query = "select * from Mas_Payterms where PayID='"+ID+"'";
         try {
 
-            connect = connectionClass.CONN();
+            connect=connectionClass.CONN();
 //                    stmt = connect.prepareStatement(query);
             stmt = connect.prepareStatement(query);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
 
-                bussid = String.valueOf(rs.getString("ItemcatgID"));
-                edit_plant = String.valueOf(rs.getString("ItemcatgName"));
-                edit_creatby = String.valueOf(rs.getString("Createdby"));
-                edit_creatdate = String.valueOf(rs.getString("Createddate"));
+                bussid=String.valueOf(rs.getString("PayID"));
+                edit_plant=String.valueOf(rs.getString("Payterms"));
+                edit_uom=String.valueOf(rs.getString("Payday"));
+                edit_creatby=String.valueOf(rs.getString("Createby"));
+                edit_creatdate=String.valueOf(rs.getString("Createdate"));
 
-                isactive = rs.getString("Isactive");
+                isactive=rs.getString("Isactive");
 
             }
 
-            Log.e("ffryutfffffff", "" + isactive);
+            Log.e("ffryutfffffff",""+isactive);
 
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
 
-        itemcatgname = dialogView.findViewById(R.id.et_catename);
-        itemcatgname.setEnabled(false);
-//        circleImageView=dialogView.findViewById(R.id.category);
-        checkBoxAgree = dialogView.findViewById(R.id.checkBoxAgree);
+
+        Payterm=dialogView.findViewById(R.id.uomname);
+        payday=dialogView.findViewById(R.id.et_uomname);
+
+        checkBoxAgree=dialogView.findViewById(R.id.checkBoxAgree);
+
 
 
         checkBoxAgree.setVisibility(View.VISIBLE);
 
 
-        itemcatgname.setText("" + edit_plant);
-//        catesortid.setText("" + edit_sort);
 
-        creatby = "" + edit_creatby;
-        creatdate = "" + edit_creatdate;
-        if (isactive.equals("1")) {
+        Payterm.setText(""+edit_plant);
+        payday.setText(""+edit_uom);
+        creatby=""+edit_creatby;
+        creatdate=""+edit_creatdate;
+        if (isactive.equals("1")){
             checkBoxAgree.setChecked(true);
-        } else {
+        }else{
             checkBoxAgree.setChecked(false);
         }
+
+
+
+
+
 
 
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
@@ -514,6 +503,26 @@ public class ItemCategory extends AppCompatActivity {
 
             }
         });
+
+       /* builder.setNeutralButton("DELETE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String query = "DELETE FROM Mas_Uom WHERE UomID='"+ID+"'";
+                try {
+                    connect=connectionClass.CONN();
+//                    stmt = connect.prepareStatement(query);
+                    stmt = connect.prepareStatement(query);
+                    rs = stmt.executeQuery();
+
+                }catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                Intent i=new Intent(Uom.this,Uom.class);
+                startActivity(i);
+                finish();
+                buildDialog("Deleted Sucessfully");
+            }
+        });*/
 
 
         builder.setPositiveButton("SUBMIT", new DialogInterface.OnClickListener() {
@@ -537,16 +546,17 @@ public class ItemCategory extends AppCompatActivity {
             public void onClick(View v) {
 
 
+                paytermstr = Payterm.getText().toString();
+                paydaystr = payday.getText().toString();
 
-                itemcatgnamestr = itemcatgname.getText().toString();
-//                imagestring=encodedImage;
-
-                if (itemcatgname.getText().toString().equals("")) {
-                    itemcatgname.requestFocus();
-                    itemcatgname.setError("FIELD CANNOT BE EMPTY");
-                }
-                else {
-                    String query = "select count(*) as row,ItemcatgID from Mas_Itemcatg where ItemcatgName='" + itemcatgnamestr + "'group by  ItemcatgID";
+                if (Payterm.getText().toString().equals("")) {
+                    Payterm.requestFocus();
+                    Payterm.setError("FIELD CANNOT BE EMPTY");
+                }else if (payday.getText().toString().equals("")) {
+                    payday.requestFocus();
+                    payday.setError("FIELD CANNOT BE EMPTY");
+                } else {
+                    String query = "select count(*) as row,PayID from Mas_Payterms where Payterms='" + paytermstr + "'group by  PayID";
                     try {
 
                         connect = connectionClass.CONN();
@@ -555,33 +565,25 @@ public class ItemCategory extends AppCompatActivity {
                         rs = stmt.executeQuery();
 
 
-//                    String size=""+rs.getFetchSize();
-//
-//                    Toast.makeText(Bussinessmaster.this, ""+size, Toast.LENGTH_SHORT).show();
-
-
                         if (rs.next()) {
                             String bussinessid = String.valueOf(rs.getString("row"));
-                            String BussID = String.valueOf(rs.getString("ItemcatgID"));
+                            String BussID = String.valueOf(rs.getString("PayID"));
 
-                            if (bussinessid.equals("1") && BussID.equals("" + ID))
-                            {
+                            if (bussinessid.equals("1") && BussID.equals("" + ID)) {
                                 Update update = new Update();
                                 update.execute("");
                                 alertDialog.dismiss();
 
-                            }
-                            else
-                            {
-                                Toast.makeText(getApplicationContext(), "User already exit", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(PayTerm.this, "User already exit", Toast.LENGTH_SHORT).show();
                             }
 
-                        }
-                        else {
+                        } else {
                             Update update = new Update();
                             update.execute("");
                             alertDialog.dismiss();
                         }
+
 
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -589,287 +591,26 @@ public class ItemCategory extends AppCompatActivity {
 
 
                 }
-
             }
         });
 
+
     }
 
 
-    public class UploadImage extends AsyncTask<String, String, String> {
-
-        String z = "";
-        Boolean isSuccess = false;
-
-        @Override
-        protected void onPostExecute(String r) {
-            // After successful insertion of image
-            List<Map<String, String>> MyData = null;
-            ItemCatgmodel mydata = new ItemCatgmodel();
-            MyData = mydata.doInBackground();
-            String[] fromwhere = {"ItemcatgName", "ItemcatgID"};
-
-            int[] viewswhere = {R.id.rank,R.id.idview};
-
-            ADAhere = new SimpleAdapter(getApplicationContext(), MyData, R.layout.itemcategory_listitem, fromwhere, viewswhere) {
-                @Override
-                public View getView(final int position, View convertView, ViewGroup parent) {
-
-                    HashMap<String, Object> obj = (HashMap<String, Object>) ADAhere.getItem(position);
-//                ID=(String)obj.get("UomID");
-                    status = (String) obj.get("Isactive");
-
-                    View view = super.getView(position, convertView, parent);
-
-
-                    ImageView imageView = view.findViewById(R.id.editicon);
-                    ImageView deleteicon = view.findViewById(R.id.delicon);
-                    CheckBox uomstatus = view.findViewById(R.id.quantity);
-                    uomstatus.setEnabled(false);
-
-                    if (status.equals("1")) {
-                        uomstatus.setChecked(true);
-                    } else {
-                        uomstatus.setChecked(false);
-                    }
-
-
-                    imageView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            HashMap<String, Object> obj = (HashMap<String, Object>) ADAhere.getItem(position);
-                            ID = (String) obj.get("ItemcatgID");
-                            editCustomDialog();
-                            Toast.makeText(getApplicationContext(), ID, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                    deleteicon.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
-                            ID=(String)obj.get("ItemcatgID");
-                            deleteCustomDialog();
-                            Toast.makeText(getApplicationContext(), ID, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    return view;
-                }
-            };
-
-            itemcatgnamelist.setAdapter(ADAhere);
-            buildDialog("Inserted Sucessfully");
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            // Inserting in the database
-            msg = "";
-
-            if (itemcatgnamestr.trim().equals("")) {
-
-                z = "Please enter Uomname ";
-
-            } else {
-
-                try {
-                    Connection con = connectionClass.CONN();
-                    if (con == null) {
-                        z = "Error in connection with SQL server";
-                    } else {
-
-                        // Get db connection first.
-                        Connection dbConn = connectionClass.CONN();
-                        // Create CallableStatement object.
-                        String storedProcudureCall = "{call sp_Insert_Itemcatg(?,?)};";
-                        CallableStatement cStmt = dbConn.prepareCall(storedProcudureCall);
-                        final ArrayList list = new ArrayList();
-                        // Set input parameters value.
-                        cStmt.setString(1,itemcatgnamestr);
-                        cStmt.setInt(2, Integer.parseInt(userid));
-                        // Execute stored procedure.
-                        rs = cStmt.executeQuery();
-                        z = "Login successfull";
-                        isSuccess = true;
-                    }
-                } catch (SQLException ex) {
-                    msg = ex.getMessage().toString();
-                    Log.d("Error no 1:", msg);
-
-                    z = "Exceptions";
-                } catch (IOError ex) {
-                    msg = ex.getMessage().toString();
-                    Log.d("Error no 2:", msg);
-
-                    z = "Exceptions";
-                } catch (AndroidRuntimeException ex) {
-                    msg = ex.getMessage().toString();
-                    Log.d("Error no 3:", msg);
-
-                    z = "Exceptions";
-                } catch (NullPointerException ex) {
-                    msg = ex.getMessage().toString();
-                    Log.d("Error no 4:", msg);
-
-                    z = "Exceptions";
-                } catch (Exception ex) {
-                    msg = ex.getMessage().toString();
-                    Log.d("Error no 5:", msg);
-
-                    z = "Exceptions";
-                }
-                System.out.println(msg);
-                return "";
-
-
-                //End Inserting in the database
-            }
-            return z;
-
-        }
-    }
-
-    public class Update extends AsyncTask<String, String, String> {
-
-        String z = "";
-        Boolean isSuccess = false;
-
-        @Override
-        protected void onPostExecute(String r) {
-            // After successful insertion of image
-
-            List<Map<String, String>> MyData = null;
-            ItemCatgmodel mydata = new ItemCatgmodel();
-            MyData = mydata.doInBackground();
-            String[] fromwhere = {"ItemcatgName", "ItemcatgID"};
-
-            int[] viewswhere = {R.id.rank,R.id.idview};
-
-            ADAhere = new SimpleAdapter(getApplicationContext(), MyData, R.layout.itemcategory_listitem, fromwhere, viewswhere) {
-                @Override
-                public View getView(final int position, View convertView, ViewGroup parent) {
-
-                    HashMap<String, Object> obj = (HashMap<String, Object>) ADAhere.getItem(position);
-//                ID=(String)obj.get("UomID");
-                    status = (String) obj.get("Isactive");
-
-                    View view = super.getView(position, convertView, parent);
-
-
-                    ImageView imageView = view.findViewById(R.id.editicon);
-                    ImageView deleteicon = view.findViewById(R.id.delicon);
-                    CheckBox uomstatus = view.findViewById(R.id.quantity);
-                    uomstatus.setEnabled(false);
-
-                    if (status.equals("1")) {
-                        uomstatus.setChecked(true);
-                    } else {
-                        uomstatus.setChecked(false);
-                    }
-
-
-                    imageView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            HashMap<String, Object> obj = (HashMap<String, Object>) ADAhere.getItem(position);
-                            ID = (String) obj.get("ItemcatgID");
-                            editCustomDialog();
-                            Toast.makeText(getApplicationContext(), ID, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                    deleteicon.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
-                            ID=(String)obj.get("ItemcatgID");
-                            deleteCustomDialog();
-                            Toast.makeText(getApplicationContext(), ID, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    return view;
-                }
-            };
-
-            itemcatgnamelist.setAdapter(ADAhere);
-
-            buildDialog( "Updated Sucessfully");
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            // Inserting in the database
-            msg = "";
-
-            if (itemcatgnamestr.trim().equals("")) {
-
-                z = "Please enter category and sortorder";
-
-            } else {
-
-                try {
-                    Connection con = connectionClass.CONN();
-                    if (con == null) {
-                        z = "Error in connection with SQL server";
-                    } else {
-
-//                        String query = "Insert into Mas_Business(Bussname,Add1,Add2,Add3,Add4,Add5,Pincode,Email,Web,Mobile,LBTno,LBTdt,Expdt,GSTno,panno,Image,Createdby,Createddate) values ('" + ed_bussname + "','" + ed_door + "','" + ed_street + "','" + ed_city + "','" + ed_state + "','" + ed_contry + "','" + ed_pincode + "','" + ed_email + "','" + ed_web + "','" + ed_mobile + "','" + ed_lbtno + "','" + te_lbtdt + "','" + te_wep_dt + "','" + ed_gstno + "','" + ed_panno + "','" + encodedImage + "','" + name + "','" + currentdate + "')";
-                        String query = "UPDATE Mas_Itemcatg set Createdby ='" + creatby + "',Createddate='" + creatdate + "',Updatedby='" + userid + "',Updateddate='" + currentdate + "' ,Isactive='" + checkBoxAgree.isChecked() + "' WHERE ItemcatgID='" + ID + "'";
-                        Statement stmt = con.createStatement();
-                        ResultSet rs = stmt.executeQuery(query);
-                        z = "Login successfull";
-                        isSuccess = true;
-                    }
-                } catch (SQLException ex) {
-                    msg = ex.getMessage().toString();
-                    Log.d("Error no 1:", msg);
-                     z = "Exceptions";
-                } catch (IOError ex) {
-                    msg = ex.getMessage().toString();
-                    Log.d("Error no 2:", msg);
-
-                    z = "Exceptions";
-                } catch (AndroidRuntimeException ex) {
-                    msg = ex.getMessage().toString();
-                    Log.d("Error no 3:", msg);
-
-                    z = "Exceptions";
-                } catch (NullPointerException ex) {
-                    msg = ex.getMessage().toString();
-                    Log.d("Error no 4:", msg);
-
-                    z = "Exceptions";
-                } catch (Exception ex) {
-                    msg = ex.getMessage().toString();
-                    Log.d("Error no 5:", msg);
-
-                    z = "Exceptions";
-                }
-                System.out.println(msg);
-                return "";
-
-
-                //End Inserting in the database
-            }
-            return z;
-
-        }
-    }
     private void deleteCustomDialog() {
 
         //Uncomment the below code to Set the message and title from the strings.xml file
 
         AlertDialog.Builder builder= new AlertDialog.Builder(this);
-        builder.setTitle("DELETE VARIENT");
+        builder.setTitle("DELETE USERGROUP");
 
         //Setting message manually and performing action on button click
         builder.setMessage("If You Want To Delete")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
-                        String query = "DELETE FROM Mas_Itemcatg WHERE ItemcatgID='"+ID+"'";
+                        String query = "DELETE FROM Mas_Payterms WHERE PayID='"+ID+"'";
                         try {
                             connect=connectionClass.CONN();
 //                    stmt = connect.prepareStatement(query);
@@ -881,43 +622,46 @@ public class ItemCategory extends AppCompatActivity {
                         }
 
 
-                        List<Map<String, String>> MyData = null;
-                        ItemCatgmodel mydata = new ItemCatgmodel();
-                        MyData = mydata.doInBackground();
-                        String[] fromwhere = {"ItemcatgName", "ItemcatgID"};
+                        buildDialog("Deleted Sucessfully");
 
-                        int[] viewswhere = {R.id.rank,R.id.idview};
+                        List<Map<String,String>> MyData = null;
+                        Paytermmodel mydata =new Paytermmodel();
+                        MyData= mydata.doInBackground();
+                        String[] fromwhere = { "Payterms","PayID"};
 
-                        ADAhere = new SimpleAdapter(getApplicationContext(), MyData, R.layout.itemcategory_listitem, fromwhere, viewswhere) {
+                        int[] viewswhere = {R.id.uomname ,R.id.idview};
+
+                        ADAhere = new SimpleAdapter(PayTerm.this, MyData,R.layout.paytermadd, fromwhere, viewswhere){
                             @Override
                             public View getView(final int position, View convertView, ViewGroup parent) {
 
-                                HashMap<String, Object> obj = (HashMap<String, Object>) ADAhere.getItem(position);
+                                HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
 //                ID=(String)obj.get("UomID");
-                                status = (String) obj.get("Isactive");
+                                status=(String)obj.get("Isactive");
 
-                                View view = super.getView(position, convertView, parent);
+                                View view=super.getView(position, convertView, parent);
 
 
-                                ImageView imageView = view.findViewById(R.id.editicon);
-                                ImageView deleteicon = view.findViewById(R.id.delicon);
-                                CheckBox uomstatus = view.findViewById(R.id.quantity);
-                                uomstatus.setEnabled(false);
 
-                                if (status.equals("1")) {
+                                ImageView imageView=view.findViewById(R.id.editicon);
+                                ImageView deleteicon=view.findViewById(R.id.deleteicon);
+                                CheckBox uomstatus=view.findViewById(R.id.uomstatus);
+
+                                if (status.equals("1")){
                                     uomstatus.setChecked(true);
-                                } else {
+                                }else{
                                     uomstatus.setChecked(false);
                                 }
+
 
 
                                 imageView.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        HashMap<String, Object> obj = (HashMap<String, Object>) ADAhere.getItem(position);
-                                        ID = (String) obj.get("ItemcatgID");
+                                        HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
+                                        ID=(String)obj.get("PayID");
                                         editCustomDialog();
-                                        Toast.makeText(getApplicationContext(), ID, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(PayTerm.this, ID, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -925,19 +669,16 @@ public class ItemCategory extends AppCompatActivity {
                                     @Override
                                     public void onClick(View v) {
                                         HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
-                                        ID=(String)obj.get("ItemcatgID");
+                                        ID=(String)obj.get("PayID");
                                         deleteCustomDialog();
-                                        Toast.makeText(getApplicationContext(), ID, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 return view;
                             }
                         };
 
-                        itemcatgnamelist.setAdapter(ADAhere);
-
-                        buildDialog("Deleted Sucessfully");
-                        Toast.makeText(getApplicationContext(), ID, Toast.LENGTH_SHORT).show();
+                        paytermlist.setAdapter(ADAhere);
+                        Toast.makeText(PayTerm.this, ID, Toast.LENGTH_SHORT).show();
 
                     }
                 })
@@ -956,6 +697,145 @@ public class ItemCategory extends AppCompatActivity {
 
 
     }
+
+
+    public class UploadImage extends AsyncTask<String,String,String>
+    {
+
+        String z = "";
+        Boolean isSuccess = false;
+        @Override
+        protected void onPostExecute(String r)
+        {
+            // After successful insertion of image
+
+//           Toast.makeText(Bussinessmaster.this , ""+z, Toast.LENGTH_LONG).show();
+
+            Log.e("ddd1111ddddddd",""+isSuccess);
+            // End After successful insertion of image
+
+
+            List<Map<String,String>> MyData = null;
+            Paytermmodel mydata =new Paytermmodel();
+            MyData= mydata.doInBackground();
+            String[] fromwhere = { "Payterms","PayID"};
+
+            int[] viewswhere = {R.id.uomname ,R.id.idview};
+
+            ADAhere = new SimpleAdapter(PayTerm.this, MyData,R.layout.paytermadd, fromwhere, viewswhere){
+                @Override
+                public View getView(final int position, View convertView, ViewGroup parent) {
+
+                    HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
+//                ID=(String)obj.get("UomID");
+                    status=(String)obj.get("Isactive");
+
+                    View view=super.getView(position, convertView, parent);
+
+
+
+                    ImageView imageView=view.findViewById(R.id.editicon);
+                    ImageView deleteicon=view.findViewById(R.id.deleteicon);
+                    CheckBox uomstatus=view.findViewById(R.id.uomstatus);
+
+                    if (status.equals("1")){
+                        uomstatus.setChecked(true);
+                    }else{
+                        uomstatus.setChecked(false);
+                    }
+
+
+
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
+                            ID=(String)obj.get("PayID");
+                            editCustomDialog();
+                            Toast.makeText(PayTerm.this, ID, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    deleteicon.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
+                            ID=(String)obj.get("PayID");
+                            deleteCustomDialog();
+                        }
+                    });
+                    return view;
+                }
+            };
+
+            paytermlist.setAdapter(ADAhere);
+
+
+            buildDialog("Inserted Sucessfully");
+
+
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            // Inserting in the database
+            msg = "";
+
+            if (paytermstr.trim().equals("") ) {
+
+                z = "Please enter Uomname ";
+
+            } else {
+
+                try {
+                    Connection con = connectionClass.CONN();
+                    if (con == null) {
+                        z = "Error in connection with SQL server";
+                    } else {
+
+                        String query = "Insert into Mas_Payterms(Payterms,Payday,Createby,Createdate) values ('" + paytermstr + "','" + paydaystr + "','" + userid + "','" + currentdate + "')";
+                        Statement stmt = con.createStatement();
+                        ResultSet rs = stmt.executeQuery(query);
+                        z = "Login successfull";
+                        isSuccess = true;
+                    }
+                } catch (SQLException ex) {
+                    msg = ex.getMessage().toString();
+                    Log.d("Error no 1:", msg);
+
+                    z = "Exceptions";
+                } catch (IOError ex) {
+                    msg = ex.getMessage().toString();
+                    Log.d("Error no 2:", msg);
+
+                    z = "Exceptions";
+                } catch (AndroidRuntimeException ex) {
+                    msg = ex.getMessage().toString();
+                    Log.d("Error no 3:", msg);
+
+                    z = "Exceptions";
+                } catch (NullPointerException ex) {
+                    msg = ex.getMessage().toString();
+                    Log.d("Error no 4:", msg);
+
+                    z = "Exceptions";
+                } catch (Exception ex) {
+                    msg = ex.getMessage().toString();
+                    Log.d("Error no 5:", msg);
+
+                    z = "Exceptions";
+                }
+                System.out.println(msg);
+                return "";
+
+
+                //End Inserting in the database
+            }
+            return z;
+
+        }
+    }
+
+
 
 
     @Override
@@ -977,10 +857,151 @@ public class ItemCategory extends AppCompatActivity {
 
     }
 
+    public class Update extends AsyncTask<String,String,String>
+    {
+
+        String z = "";
+        Boolean isSuccess = false;
+        @Override
+        protected void onPostExecute(String r)
+        {
+            // After successful insertion of image
+
+//           Toast.makeText(Bussinessmaster.this , ""+z, Toast.LENGTH_LONG).show();
+
+            Log.e("ddd1111ddddddd",""+isSuccess);
+            // End After successful insertion of image
+
+
+
+            List<Map<String,String>> MyData = null;
+            Paytermmodel mydata =new Paytermmodel();
+            MyData= mydata.doInBackground();
+            String[] fromwhere = { "Payterms","PayID"};
+
+            int[] viewswhere = {R.id.uomname ,R.id.idview};
+
+            ADAhere = new SimpleAdapter(PayTerm.this, MyData,R.layout.paytermadd, fromwhere, viewswhere){
+                @Override
+                public View getView(final int position, View convertView, ViewGroup parent) {
+
+                    HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
+//                ID=(String)obj.get("UomID");
+                    status=(String)obj.get("Isactive");
+
+                    View view=super.getView(position, convertView, parent);
+
+
+
+                    ImageView imageView=view.findViewById(R.id.editicon);
+                    ImageView deleteicon=view.findViewById(R.id.deleteicon);
+                    CheckBox uomstatus=view.findViewById(R.id.uomstatus);
+
+                    if (status.equals("1")){
+                        uomstatus.setChecked(true);
+                    }else{
+                        uomstatus.setChecked(false);
+                    }
+
+
+
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
+                            ID=(String)obj.get("PayID");
+                            editCustomDialog();
+                            Toast.makeText(PayTerm.this, ID, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    deleteicon.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
+                            ID=(String)obj.get("PayID");
+                            deleteCustomDialog();
+                        }
+                    });
+                    return view;
+                }
+            };
+
+            paytermlist.setAdapter(ADAhere);
+
+
+
+            buildDialog("Updated Sucessfully");
+
+
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            // Inserting in the database
+            msg = "";
+
+            if (paytermstr.trim().equals("")) {
+
+                z = "Please enter Bussnessname";
+
+            } else {
+
+                try {
+                    Connection con = connectionClass.CONN();
+                    if (con == null) {
+                        z = "Error in connection with SQL server";
+                    } else {
+
+
+
+//                        String query = "Insert into Mas_Business(Bussname,Add1,Add2,Add3,Add4,Add5,Pincode,Email,Web,Mobile,LBTno,LBTdt,Expdt,GSTno,panno,Image,Createdby,Createddate) values ('" + ed_bussname + "','" + ed_door + "','" + ed_street + "','" + ed_city + "','" + ed_state + "','" + ed_contry + "','" + ed_pincode + "','" + ed_email + "','" + ed_web + "','" + ed_mobile + "','" + ed_lbtno + "','" + te_lbtdt + "','" + te_wep_dt + "','" + ed_gstno + "','" + ed_panno + "','" + encodedImage + "','" + name + "','" + currentdate + "')";
+                        String query = "UPDATE Mas_Payterms SET Payterms='"+paytermstr+"',Payday='"+paydaystr+"',Createby='"+creatby+"',Createdate='"+creatdate+"',Updateby='"+userid+"',Updatedate ='"+currentdate+"' ,Isactive='"+checkBoxAgree.isChecked()+"' WHERE PayID='"+ID+"';";
+                        Statement stmt = con.createStatement();
+                        ResultSet rs = stmt.executeQuery(query);
+                        z = "Login successfull";
+                        isSuccess = true;
+                    }
+                } catch (SQLException ex) {
+                    msg = ex.getMessage().toString();
+                    Log.d("Error no 1:", msg);
+
+                    z = "Exceptions";
+                } catch (IOError ex) {
+                    msg = ex.getMessage().toString();
+                    Log.d("Error no 2:", msg);
+
+                    z = "Exceptions";
+                } catch (AndroidRuntimeException ex) {
+                    msg = ex.getMessage().toString();
+                    Log.d("Error no 3:", msg);
+
+                    z = "Exceptions";
+                } catch (NullPointerException ex) {
+                    msg = ex.getMessage().toString();
+                    Log.d("Error no 4:", msg);
+
+                    z = "Exceptions";
+                } catch (Exception ex) {
+                    msg = ex.getMessage().toString();
+                    Log.d("Error no 5:", msg);
+
+                    z = "Exceptions";
+                }
+                System.out.println(msg);
+                return "";
+
+
+                //End Inserting in the database
+            }
+            return z;
+
+        }
+    }
+
 
     private void buildDialog( String type) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(ItemCategory.this);
-        builder.setTitle("Usergroup Master");
+        final AlertDialog.Builder builder = new AlertDialog.Builder(PayTerm.this);
+        builder.setTitle("Uom Master");
         builder.setMessage(type);
 
         builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
@@ -996,4 +1017,7 @@ public class ItemCategory extends AppCompatActivity {
 //        dialog.getWindow().getAttributes().windowAnimations = animationSource;
         dialog.show();
     }
+
+
+
 }

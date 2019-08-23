@@ -13,19 +13,24 @@ import com.genn.info.restaurant.Activity.Employee;
 import com.genn.info.restaurant.Activity.Finyear;
 import com.genn.info.restaurant.Activity.Ingredient;
 import com.genn.info.restaurant.Activity.ItemCategory;
+import com.genn.info.restaurant.Activity.ItemSubcatg;
 import com.genn.info.restaurant.Activity.Ledger;
 import com.genn.info.restaurant.Activity.Ledgergroup;
 import com.genn.info.restaurant.Activity.Ledgersubgrp;
 import com.genn.info.restaurant.Activity.Login;
+import com.genn.info.restaurant.Activity.OrderType;
+import com.genn.info.restaurant.Activity.PayTerm;
 import com.genn.info.restaurant.Activity.Payment;
 import com.genn.info.restaurant.Activity.Permission_Template;
 import com.genn.info.restaurant.Activity.Plantmaster;
+import com.genn.info.restaurant.Activity.Recipe;
 import com.genn.info.restaurant.Activity.Report;
 import com.genn.info.restaurant.Activity.SettingsActivity;
 import com.genn.info.restaurant.Activity.Store;
 import com.genn.info.restaurant.Activity.Subdepartment;
 import com.genn.info.restaurant.Activity.Templatemaster;
 import com.genn.info.restaurant.Activity.Templatemodulemaster;
+import com.genn.info.restaurant.Activity.Terms;
 import com.genn.info.restaurant.Activity.Uom;
 import com.genn.info.restaurant.Activity.User;
 import com.genn.info.restaurant.Activity.Usergroup;
@@ -262,6 +267,26 @@ Button pay;
                 }
               else if (id == R.id.itemcatgory) {
                     startActivity(new Intent(MainActivity.this, ItemCategory .class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+              else if (id == R.id.itemsubcategory) {
+                    startActivity(new Intent(MainActivity.this, ItemSubcatg.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+              else if (id == R.id.recipe) {
+                    startActivity(new Intent(MainActivity.this, Recipe.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+              else if (id == R.id.terms) {
+                    startActivity(new Intent(MainActivity.this, Terms.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+              else if (id == R.id.payterms) {
+                    startActivity(new Intent(MainActivity.this, PayTerm.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+              else if (id == R.id.ordertype) {
+                    startActivity(new Intent(MainActivity.this, OrderType.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                 }
 
