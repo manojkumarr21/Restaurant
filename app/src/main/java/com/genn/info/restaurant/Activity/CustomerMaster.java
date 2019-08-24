@@ -1055,7 +1055,7 @@ String Customernamestr;
                             query = "UPDATE Mas_Cust SET Cusname='"+ed_customer+"', Addr1='"+ed_door+"',Addr2='"+ed_street+"',Addr3='"+ed_city+"',Addr4='"+ed_state+"',Addr5='"+ed_contry+"',Addr6='"+ed_pincode+"',GSTno='"+ed_gstno+"',Contactmobile='"+ed_mobile+"',Contactmail='"+ed_email+"',Createby='"+creatby+"',Createdate='"+creatdate+"',Updateby='"+userid+"',Updatedate='"+currentdate+"' ,Isactive='"+checkBoxAgree.isChecked()+"' WHERE ID='"+ID+"';";
                         }else{
                             query = "UPDATE Mas_Cust SET Cusname='"+ed_customer+"', Addr1='"+ed_door+"',Addr2='"+ed_street+"',Addr3='"+ed_city+"',Addr4='"+ed_state+"',Addr5='"+ed_contry+"',Addr6='"+ed_pincode+"',GSTno='"+ed_gstno+"',DOB='"+te_lbtdt+"',Contactmobile='"+ed_mobile+"',Contactmail='"+ed_email+"',Createby='"+creatby+"',Createdate='"+creatdate+"',Updateby='"+userid+"',Updatedate='"+currentdate+"' ,Isactive='"+checkBoxAgree.isChecked()+"' WHERE ID='"+ID+"';";
- 
+
                         }
 
 //                        String query = "Insert into Mas_Business(Bussname,Add1,Add2,Add3,Add4,Add5,Pincode,Email,Web,Mobile,LBTno,LBTdt,Expdt,GSTno,panno,Image,Createdby,Createddate) values ('" + ed_bussname + "','" + ed_door + "','" + ed_street + "','" + ed_city + "','" + ed_state + "','" + ed_contry + "','" + ed_pincode + "','" + ed_email + "','" + ed_web + "','" + ed_mobile + "','" + ed_lbtno + "','" + te_lbtdt + "','" + te_wep_dt + "','" + ed_gstno + "','" + ed_panno + "','" + encodedImage + "','" + name + "','" + currentdate + "')";
