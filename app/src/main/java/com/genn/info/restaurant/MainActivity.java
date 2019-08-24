@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.genn.info.restaurant.Activity.Bussinessmaster;
 import com.genn.info.restaurant.Activity.Customer;
+import com.genn.info.restaurant.Activity.CustomerMaster;
 import com.genn.info.restaurant.Activity.Department;
 import com.genn.info.restaurant.Activity.Designation;
 import com.genn.info.restaurant.Activity.Empcategory;
@@ -298,6 +299,10 @@ Button pay;
                 }
              else if (id == R.id.wastetype) {
                     startActivity(new Intent(MainActivity.this, WasteType.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+             else if (id == R.id.customer) {
+                    startActivity(new Intent(MainActivity.this, CustomerMaster.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                 }
 

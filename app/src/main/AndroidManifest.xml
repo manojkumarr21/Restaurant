@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".Activity.WasteType"></activity>
+        <activity android:name=".Activity.CustomerMaster"></activity>
+        <activity android:name=".Activity.WasteType" />
         <activity android:name=".Activity.PoCancelReson" />
         <activity android:name=".Activity.OrderType" />
         <activity android:name=".Activity.PayTerm" />

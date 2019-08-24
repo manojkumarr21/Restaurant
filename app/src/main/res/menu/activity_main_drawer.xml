@@ -175,6 +175,10 @@
                 android:id="@+id/wastetype"
                 android:icon="@drawable/nav_policy"
                 android:title="Waste Type" />
+            <item
+                android:id="@+id/customer"
+                android:icon="@drawable/nav_policy"
+                android:title="Customer" />
            <!-- <item
                 android:id="@+id/nav_tracking"
                 android:icon="@drawable/nav_request"
