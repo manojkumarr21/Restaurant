@@ -179,6 +179,15 @@
                 android:id="@+id/customer"
                 android:icon="@drawable/nav_policy"
                 android:title="Customer" />
+
+            <item
+                android:id="@+id/vendor"
+                android:icon="@drawable/nav_policy"
+                android:title="vendor" />
+            <item
+                android:id="@+id/Ingredient"
+                android:icon="@drawable/nav_policy"
+                android:title="Ingredient" />
            <!-- <item
                 android:id="@+id/nav_tracking"
                 android:icon="@drawable/nav_request"

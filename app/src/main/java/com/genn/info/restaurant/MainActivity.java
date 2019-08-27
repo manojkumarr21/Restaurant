@@ -13,6 +13,7 @@ import com.genn.info.restaurant.Activity.Empcategory;
 import com.genn.info.restaurant.Activity.Employee;
 import com.genn.info.restaurant.Activity.Finyear;
 import com.genn.info.restaurant.Activity.Ingredient;
+import com.genn.info.restaurant.Activity.IngredientMaster;
 import com.genn.info.restaurant.Activity.ItemCategory;
 import com.genn.info.restaurant.Activity.ItemSubcatg;
 import com.genn.info.restaurant.Activity.Ledger;
@@ -37,6 +38,7 @@ import com.genn.info.restaurant.Activity.Uom;
 import com.genn.info.restaurant.Activity.User;
 import com.genn.info.restaurant.Activity.Usergroup;
 import com.genn.info.restaurant.Activity.Varientmaster;
+import com.genn.info.restaurant.Activity.Vendor;
 import com.genn.info.restaurant.Activity.WasteType;
 import com.genn.info.restaurant.Activity.Workdivision;
 import com.genn.info.restaurant.Connection.DBHelper;
@@ -305,6 +307,16 @@ Button pay;
                     startActivity(new Intent(MainActivity.this, CustomerMaster.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                 }
+              else if (id == R.id.vendor) {
+                    startActivity(new Intent(MainActivity.this, Vendor.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+    else if (id == R.id.Ingredient) {
+                    startActivity(new Intent(MainActivity.this, IngredientMaster.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+
+
 
                 //replacing the fragment
                 if (fragment != null) {
