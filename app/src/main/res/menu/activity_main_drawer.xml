@@ -142,6 +142,10 @@
                 android:icon="@drawable/nav_policy"
                 android:title="Finasial year" />
             <item
+                android:id="@+id/tax"
+                android:icon="@drawable/nav_policy"
+                android:title="Tax" />
+            <item
                 android:id="@+id/itemcatgory"
                 android:icon="@drawable/nav_policy"
                 android:title="Itemcatgory" />
@@ -188,6 +192,16 @@
                 android:id="@+id/Ingredient"
                 android:icon="@drawable/nav_policy"
                 android:title="Ingredient" />
+
+            <item
+                android:id="@+id/Productcatg"
+                android:icon="@drawable/nav_policy"
+                android:title="Productcatg" />
+
+            <item
+                android:id="@+id/mainproduct"
+                android:icon="@drawable/nav_policy"
+                android:title="Product" />
            <!-- <item
                 android:id="@+id/nav_tracking"
                 android:icon="@drawable/nav_request"

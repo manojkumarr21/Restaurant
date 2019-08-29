@@ -187,10 +187,6 @@ public class Product extends AppCompatActivity implements BottomNavigationView.O
                 fragment = new Category();
                 break;
 
-            case R.id.navigation_cart:
-                fragment = new Tax();
-                break;
-
             case R.id.navigation_profile:
                 fragment = new Discount();
                 break;

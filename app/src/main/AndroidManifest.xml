@@ -22,7 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".Activity.IngredientMaster"></activity>
+        <activity android:name=".Activity.MainProduct"></activity>
+        <activity android:name=".Activity.Productcatg" />
+        <activity android:name=".Activity.Tax" />
+        <activity android:name=".Activity.IngredientMaster" />
         <activity android:name=".Activity.Vendor" />
         <activity android:name=".Activity.CustomerMaster" />
         <activity android:name=".Activity.WasteType" />
@@ -33,7 +36,6 @@
         <activity android:name=".Activity.Recipe" />
         <activity android:name=".Activity.ItemSubcatg" />
         <activity android:name=".Activity.ItemCategory" />
-        <activity android:name=".Activity.ProtectCategory" />
         <activity android:name=".Activity.Finyear" />
         <activity android:name=".Activity.Ledger" />
         <activity android:name=".Activity.Ledgersubgrp" />

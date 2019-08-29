@@ -4,21 +4,16 @@
     <item
         android:id="@+id/navigation_shop"
         android:icon="@drawable/ic_description_black"
-        android:title="Item" />
+        android:title="Product" />
 
     <item
         android:id="@+id/navigation_gifts"
         android:icon="@drawable/ic_view_module"
-        android:title="Category" />
-
-    <item
-        android:id="@+id/navigation_cart"
-        android:icon="@drawable/ic_monetization_on_black"
-        android:title="Tax" />
+        android:title="Details" />
 
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/discount"
-        android:title="Discount" />
+        android:title="Rate" />
 
 </menu>

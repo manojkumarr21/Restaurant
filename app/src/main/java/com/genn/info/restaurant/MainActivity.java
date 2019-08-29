@@ -20,17 +20,20 @@ import com.genn.info.restaurant.Activity.Ledger;
 import com.genn.info.restaurant.Activity.Ledgergroup;
 import com.genn.info.restaurant.Activity.Ledgersubgrp;
 import com.genn.info.restaurant.Activity.Login;
+import com.genn.info.restaurant.Activity.MainProduct;
 import com.genn.info.restaurant.Activity.OrderType;
 import com.genn.info.restaurant.Activity.PayTerm;
 import com.genn.info.restaurant.Activity.Payment;
 import com.genn.info.restaurant.Activity.Permission_Template;
 import com.genn.info.restaurant.Activity.Plantmaster;
 import com.genn.info.restaurant.Activity.PoCancelReson;
+import com.genn.info.restaurant.Activity.Productcatg;
 import com.genn.info.restaurant.Activity.Recipe;
 import com.genn.info.restaurant.Activity.Report;
 import com.genn.info.restaurant.Activity.SettingsActivity;
 import com.genn.info.restaurant.Activity.Store;
 import com.genn.info.restaurant.Activity.Subdepartment;
+import com.genn.info.restaurant.Activity.Tax;
 import com.genn.info.restaurant.Activity.Templatemaster;
 import com.genn.info.restaurant.Activity.Templatemodulemaster;
 import com.genn.info.restaurant.Activity.Terms;
@@ -313,6 +316,17 @@ Button pay;
                 }
     else if (id == R.id.Ingredient) {
                     startActivity(new Intent(MainActivity.this, IngredientMaster.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+ else if (id == R.id.tax) {
+                    startActivity(new Intent(MainActivity.this, Tax.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }
+ else if (id == R.id.Productcatg) {
+                    startActivity(new Intent(MainActivity.this, Productcatg.class));
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                }else if (id == R.id.mainproduct) {
+                    startActivity(new Intent(MainActivity.this, MainProduct.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                 }
 
