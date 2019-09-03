@@ -183,22 +183,6 @@ public class Productcatg extends AppCompatActivity {
               /*      dash_linearLayout.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this, MainActivity.class));*/
 
-                }else if (id == R.id.nav_policy) {
-
-
-                    startActivity(new Intent(Productcatg.this, Customer.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-              /*      dash_linearLayout.setVisibility(View.GONE);
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));*/
-
-                }else if (id == R.id.nav_earningDeatils) {
-
-
-                    startActivity(new Intent(Productcatg.this, Ingredient.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-              /*      dash_linearLayout.setVisibility(View.GONE);
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));*/
-
                 }else if (id == R.id.nav_claims) {
 
 
@@ -335,31 +319,19 @@ public class Productcatg extends AppCompatActivity {
 
         //then we will inflate the custom alert dialog xml that we created
         View dialogView = LayoutInflater.from(this).inflate(R.layout.categoryaddlist, viewGroup, false);
-
-
         //Now we need an AlertDialog.Builder object
         AlertDialog.Builder builder = new AlertDialog.Builder(Productcatg.this);
-
         //setting the view of the builder to our custom view that we already inflated
         builder.setView(dialogView);
-
         catename = dialogView.findViewById(R.id.et_catename);
-
         circleImageView=dialogView.findViewById(R.id.category);
-
         checkBoxAgree = dialogView.findViewById(R.id.checkBoxAgree);
-
         checkBoxAgree.setVisibility(View.GONE);
-
-
-
-
 
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                selectImage();
-
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)&& !Environment.getExternalStorageState().equals(Environment.MEDIA_CHECKING))
                 {
                     Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -372,13 +344,8 @@ public class Productcatg extends AppCompatActivity {
                 }
                 // End Opening the Gallery and selecting media
 
-
             }
         });
-
-
-
-
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 
@@ -403,12 +370,9 @@ public class Productcatg extends AppCompatActivity {
 
 
 
-
-
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 varinamestr = catename.getText().toString();
 //                varisort = catesortid.getText().toString();
@@ -434,8 +398,6 @@ public class Productcatg extends AppCompatActivity {
                         if (rs.next()) {
                             String bussinessid = String.valueOf(rs.getString("row"));
                             if (bussinessid.equals("0")) {
-
-
 
                                UploadImage uploadImage = new UploadImage();
                                 uploadImage.execute("");
@@ -494,7 +456,6 @@ public class Productcatg extends AppCompatActivity {
                 encodedImage = String.valueOf(rs.getString("Image"));
                 edit_creatby = String.valueOf(rs.getString("Createdby"));
                 edit_creatdate = String.valueOf(rs.getString("Createdate"));
-
                 isactive = rs.getString("Isactive");
 
             }
@@ -514,16 +475,11 @@ public class Productcatg extends AppCompatActivity {
         checkBoxAgree.setVisibility(View.VISIBLE);
 
 
-
-
         byte[] encodeByte = Base64.decode(encodedImage, Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-
         circleImageView.setImageBitmap(bitmap);
         catename.setText("" + edit_plant);
 //        catesortid.setText("" + edit_sort);
-
-
 
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -541,12 +497,8 @@ public class Productcatg extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "No activity found to perform this task", Toast.LENGTH_SHORT).show();
                 }
                 // End Opening the Gallery and selecting media
-
-
             }
         });
-
-
         creatby = "" + edit_creatby;
         creatdate = "" + edit_creatdate;
         if (isactive.equals("1")) {
@@ -554,8 +506,6 @@ public class Productcatg extends AppCompatActivity {
         } else {
             checkBoxAgree.setChecked(false);
         }
-
-
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
 
             @Override
@@ -564,7 +514,6 @@ public class Productcatg extends AppCompatActivity {
 
             }
         });
-
         builder.setNeutralButton("", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -624,29 +573,18 @@ public class Productcatg extends AppCompatActivity {
                 buildDialog("Deleted Sucessfully");*/
             }
         });
-
-
         builder.setPositiveButton("SUBMIT", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-
             }
         });
-
         //finally creating the alert dialog and displaying it
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
-
-
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
                 varinamestr = catename.getText().toString();
                 imagestring=encodedImage;
 
@@ -664,8 +602,6 @@ public class Productcatg extends AppCompatActivity {
 //                    stmt = connect.prepareStatement(query);
                         stmt = connect.prepareStatement(query);
                         rs = stmt.executeQuery();
-
-
 //                    String size=""+rs.getFetchSize();
 //
 //                    Toast.makeText(Bussinessmaster.this, ""+size, Toast.LENGTH_SHORT).show();
@@ -680,13 +616,11 @@ public class Productcatg extends AppCompatActivity {
                                 Update update = new Update();
                                 update.execute("");
                                 alertDialog.dismiss();
-
                             }
                             else
                             {
                                 Toast.makeText(getApplicationContext(), "User already exit", Toast.LENGTH_SHORT).show();
                             }
-
                         }
                         else {
                             Update update = new Update();
@@ -1020,6 +954,9 @@ public class Productcatg extends AppCompatActivity {
             categorylist.setAdapter(ADAhere);
 
             buildDialog( "Updated Sucessfully");
+
+
+
         }
 
         @Override
@@ -1105,10 +1042,10 @@ public class Productcatg extends AppCompatActivity {
     }
 
     private void buildDialog(String type) {
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(Productcatg.this);
         builder.setTitle("Category Master");
         builder.setMessage(type);
-
         builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
 
             @Override
@@ -1117,10 +1054,11 @@ public class Productcatg extends AppCompatActivity {
 
             }
         });
-
         AlertDialog dialog = builder.create();
 //        dialog.getWindow().getAttributes().windowAnimations = animationSource;
         dialog.show();
+
+
     }
 
 

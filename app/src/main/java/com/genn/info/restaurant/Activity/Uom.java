@@ -171,22 +171,6 @@ public class Uom extends AppCompatActivity  implements Validator.ValidationListe
               /*      dash_linearLayout.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this, MainActivity.class));*/
 
-                }else if (id == R.id.nav_policy) {
-
-
-                    startActivity(new Intent(Uom.this, Customer.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-              /*      dash_linearLayout.setVisibility(View.GONE);
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));*/
-
-                }else if (id == R.id.nav_earningDeatils) {
-
-
-                    startActivity(new Intent(Uom.this, Ingredient.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-              /*      dash_linearLayout.setVisibility(View.GONE);
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));*/
-
                 }else if (id == R.id.nav_claims) {
 
 

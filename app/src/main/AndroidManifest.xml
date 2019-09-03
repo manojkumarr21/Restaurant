@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".Activity.MainProduct"></activity>
+        <activity android:name=".Activity.Item"></activity>
+        <activity android:name=".Activity.MainProduct" />
         <activity android:name=".Activity.Productcatg" />
         <activity android:name=".Activity.Tax" />
         <activity android:name=".Activity.IngredientMaster" />

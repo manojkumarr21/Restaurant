@@ -166,22 +166,6 @@ Button pay;
               /*      dash_linearLayout.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this, MainActivity.class));*/
 
-                }else if (id == R.id.nav_policy) {
-
-
-                    startActivity(new Intent(MainActivity.this, Customer.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-              /*      dash_linearLayout.setVisibility(View.GONE);
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));*/
-
-                }else if (id == R.id.nav_earningDeatils) {
-
-
-                    startActivity(new Intent(MainActivity.this, Ingredient.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-              /*      dash_linearLayout.setVisibility(View.GONE);
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));*/
-
                 }
                 else if (id == R.id.nav_claims) {
                     startActivity(new Intent(MainActivity.this, Report.class));
@@ -318,15 +302,12 @@ Button pay;
                     startActivity(new Intent(MainActivity.this, IngredientMaster.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                 }
- else if (id == R.id.tax) {
+         else if (id == R.id.tax) {
                     startActivity(new Intent(MainActivity.this, Tax.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                 }
- else if (id == R.id.Productcatg) {
+          else if (id == R.id.Productcatg) {
                     startActivity(new Intent(MainActivity.this, Productcatg.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-                }else if (id == R.id.mainproduct) {
-                    startActivity(new Intent(MainActivity.this, MainProduct.class));
                     overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                 }
 

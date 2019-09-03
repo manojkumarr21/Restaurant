@@ -130,14 +130,6 @@ public class Customer extends AppCompatActivity  {
               /*      dash_linearLayout.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this, MainActivity.class));*/
 
-                }else if (id == R.id.nav_policy) {
-
-
-                    startActivity(new Intent(Customer.this, Customer.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-              /*      dash_linearLayout.setVisibility(View.GONE);
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));*/
-
                 }
 
                 //replacing the fragment

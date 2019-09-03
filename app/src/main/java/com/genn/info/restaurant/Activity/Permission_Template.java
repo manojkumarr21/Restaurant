@@ -177,23 +177,7 @@ public class Permission_Template extends AppCompatActivity {
               /*      dash_linearLayout.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this, MainActivity.class));*/
 
-                } else if (id == R.id.nav_policy) {
-
-
-                    startActivity(new Intent(Permission_Template.this, Customer.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-              /*      dash_linearLayout.setVisibility(View.GONE);
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));*/
-
-                } else if (id == R.id.nav_earningDeatils) {
-
-
-                    startActivity(new Intent(Permission_Template.this, Ingredient.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-              /*      dash_linearLayout.setVisibility(View.GONE);
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));*/
-
-                } else if (id == R.id.nav_claims) {
+                }else if (id == R.id.nav_claims) {
 
 
                     startActivity(new Intent(Permission_Template.this, Report.class));

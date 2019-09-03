@@ -168,22 +168,6 @@ public class Workdivision extends AppCompatActivity {
               /*      dash_linearLayout.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this, MainActivity.class));*/
 
-                }else if (id == R.id.nav_policy) {
-
-
-                    startActivity(new Intent(Workdivision.this, Customer.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-              /*      dash_linearLayout.setVisibility(View.GONE);
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));*/
-
-                }else if (id == R.id.nav_earningDeatils) {
-
-
-                    startActivity(new Intent(Workdivision.this, Ingredient.class));
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-              /*      dash_linearLayout.setVisibility(View.GONE);
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));*/
-
                 }else if (id == R.id.nav_claims) {
 
 

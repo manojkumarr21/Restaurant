@@ -13,19 +13,12 @@
             android:id="@+id/nav_dashboard"
             android:icon="@drawable/ic_supervisor"
             android:title="User" />
-        <item
-            android:id="@+id/product"
-            android:icon="@drawable/nav_salary"
-            android:title="Product and Tax" />
+
         <item
             android:id="@+id/nav_claims"
             android:icon="@drawable/nav_claims"
             android:title="Reports" />
 
-        <!--<item
-            android:id="@+id/nav_attendance"
-            android:icon="@drawable/nav_ic_attendance"
-            android:title="Attendance" />-->
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/nav_directory"
@@ -34,16 +27,6 @@
             android:id="@+id/nav_directory"
             android:icon="@drawable/nav_news_feed"
             android:title="Employee Backup" />
-        <item
-            android:id="@+id/nav_policy"
-            android:icon="@drawable/nav_policy"
-            android:title="Customer" />
-
-        <item
-            android:id="@+id/nav_earningDeatils"
-            android:icon="@drawable/nav_request"
-            android:title="Ingredients" />
-    <!--and Reimpresement-->
 
         <item
             android:id="@+id/nav_signout"
@@ -51,18 +34,41 @@
             android:title="SignOut" />
 
 
-    <item android:title="Admin Masters">
+    <item android:title="Permission">
         <menu>
 
             <item
                 android:id="@+id/usergroup"
                 android:icon="@drawable/nav_salary"
                 android:title="Usergroup" />
-
             <item
                 android:id="@+id/user"
                 android:icon="@drawable/nav_salary"
                 android:title="User" />
+            <item
+                android:id="@+id/template"
+                android:icon="@drawable/nav_policy"
+                android:title="Template" />
+            <item
+                android:id="@+id/templatemodule"
+                android:icon="@drawable/nav_policy"
+                android:title="TemplateModule" />
+            <item
+                android:id="@+id/permissiontemplate"
+                android:icon="@drawable/nav_policy"
+                android:title="TemplatePermission" />
+
+        </menu>
+    </item>
+
+
+
+
+
+    <item android:title="Admin Masters">
+        <menu>
+
+
             <item
                 android:id="@+id/bussiness"
                 android:icon="@drawable/nav_salary"
@@ -81,20 +87,6 @@
                 android:id="@+id/Varient"
                 android:icon="@drawable/nav_policy"
                 android:title="Varient" />
-
-            <item
-                android:id="@+id/template"
-                android:icon="@drawable/nav_policy"
-                android:title="Template" />
-            <item
-                android:id="@+id/templatemodule"
-                android:icon="@drawable/nav_policy"
-                android:title="TemplateModule" />
-            <item
-                android:id="@+id/permissiontemplate"
-                android:icon="@drawable/nav_policy"
-                android:title="TemplatePermission" />
-
 
             <item
                 android:id="@+id/store"
@@ -197,11 +189,10 @@
                 android:id="@+id/Productcatg"
                 android:icon="@drawable/nav_policy"
                 android:title="Productcatg" />
-
             <item
-                android:id="@+id/mainproduct"
-                android:icon="@drawable/nav_policy"
-                android:title="Product" />
+                android:id="@+id/product"
+                android:icon="@drawable/nav_salary"
+                android:title="Product"/>
            <!-- <item
                 android:id="@+id/nav_tracking"
                 android:icon="@drawable/nav_request"
